@@ -6,7 +6,7 @@
 
 ### 職涯摘要
 
-具備紮實的軟體開發基礎，擅長專案開發規劃、流程設計、Line Bot開發、網頁設計/前端/後端/API、微服務程式、伺服器管理、資料庫管理、IP/domain/SSL/CDN 等配置服務等工作。主要開發語言為 C# .net，伺服器使用 Win Server，資料庫使用 MSSQL。
+具備紮實的軟體開發基礎，擅長專案開發規劃、流程設計、Line Bot開發、Discord Bot開發、網頁設計/前端/後端/API、微服務程式、伺服器管理、資料庫管理、IP/domain/SSL/CDN 等配置服務等工作。主要開發語言為 C# .net，伺服器使用 Win Server，資料庫使用 MSSQL。
 
 ### 工作技能
 
@@ -19,6 +19,11 @@
 
 * 熟悉 Line Bot 開發平台與 API
 * 能開發出符合需求的 Line Bot 應用程式
+
+#### Discord Bot開發
+
+* 熟悉 Discord Bot 開發平台與 API
+* 能開發出符合需求的 Discord Bot 應用程式
 
 #### 網頁設計/前端/後端/API
 
