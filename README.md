@@ -25,7 +25,7 @@
 * 熟悉 HTML、CSS、JavaScript 等前端技術
 * 熟悉 VUE 等前端設計框架
 * 熟悉 C#、ASP.NET 等後端技術
-* 熟悉 nginx 反向代理 配置
+* 熟悉 Nginx 反向代理 配置
 * 熟悉 Cloudflare CDN 配置
 * 能開發出符合需求的網頁應用程式與 API
 
