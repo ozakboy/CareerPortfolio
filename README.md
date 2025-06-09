@@ -71,7 +71,9 @@
 
 信箱:awc0450056@gmail.com
 
-Telegram : ![image](https://github.com/user-attachments/assets/956f56c6-e06b-4165-ae94-89e51358fa6e){width=300px height=200px}
+Telegram : 
+<img src="https://github.com/user-attachments/assets/956f56c6-e06b-4165-ae94-89e51358fa6e" width="300" height="300">
+
 
 
 
