@@ -1,79 +1,85 @@
 
 ### 職涯摘要
 
-具備紮實的軟體開發基礎，擅長專案開發規劃、流程設計、Line Bot開發、Discord Bot開發、Telegram Bot開發、網頁設計/前端/後端/API、高頻交易系統、VUE 設計框架、微服務程式、伺服器管理、資料庫管理、IP/domain/SSL/CDN 等配置服務等工作、串接股票、期貨、虛擬貨幣等報價訊號。主要開發語言為 C# .net，伺服器使用 Win Server，資料庫使用 MSSQL。
+具備紮實的軟體開發基礎，專精於 **C# / .NET** 全端開發與系統架構設計。擅長從 0 到 1 的專案規劃、流程設計與落地執行，涵蓋後端服務、API、前端網頁、即時通訊機器人，到高頻交易系統與微服務架構。
+
+熟悉伺服器建置與維運（Windows Server / Linux Ubuntu / Docker），並能獨立完成 IP、Domain、SSL、CDN、反向代理等網路基礎設施配置。具備串接股票、期貨、虛擬貨幣等即時報價訊號的實戰經驗，能打造高頻、低延遲的交易系統。
+
+* **主要語言**：C# (.NET / .NET Framework)
+* **資料庫**：MSSQL
+* **伺服器**：Windows Server、Linux Ubuntu Server
+
+---
 
 ### 工作技能
 
-#### 專案開發
+#### 專案開發與規劃
 
-* 熟悉專案開發流程，能有效規劃、設計、執行專案
-* 具備良好的溝通協調能力，能與團隊成員合作完成專案
+* 熟悉完整專案開發流程，能有效規劃、設計、執行專案
+* 具備需求分析與系統架構設計能力
+* 良好的溝通協調能力，能與團隊協作完成專案
 
-#### Line Bot開發
+#### 後端開發 / API
 
-* 熟悉 Line Bot 開發平台與 API
-* 能開發出符合需求的 Line Bot 應用程式
+* 熟悉 C#、ASP.NET / ASP.NET Core 後端技術
+* 設計與開發 RESTful API
+* 串接第三方服務與外部 API
 
-#### Discord Bot開發
+#### 前端 / 網頁開發
 
-* 熟悉 Discord Bot 開發平台與 API
-* 能開發出符合需求的 Discord Bot 應用程式
+* 熟悉 HTML、CSS、JavaScript 等前端基礎技術
+* 熟悉 Vue 前端框架
+* 能開發符合需求的響應式網頁應用程式
 
-#### telegram Bot開發
+#### 即時通訊機器人 (Chat Bot)
 
-* 熟悉 Telegram Bot 開發平台與 API
-* 能開發出符合需求的 Telegram Bot 應用程式
+* **Line Bot**：熟悉開發平台與 API，能開發符合需求的應用程式
+* **Discord Bot**：熟悉開發平台與 API，能開發符合需求的應用程式
+* **Telegram Bot**：熟悉開發平台與 API，能開發符合需求的應用程式
 
-#### 網頁設計/前端/後端/API
+#### 微服務與交易系統
 
-* 熟悉 HTML、CSS、JavaScript 等前端技術
-* 熟悉 VUE 等前端設計框架
-* 熟悉 C#、ASP.NET 等後端技術
-* 熟悉 Nginx 反向代理 配置
+* 熟悉微服務架構設計與開發
+* 期貨高頻交易系統開發（高頻、低延遲）
+* 串接股票、期貨、虛擬貨幣等即時報價訊號
+
+#### 伺服器與維運 (DevOps)
+
+* 熟悉 Amazon AWS 雲端配置
+* 熟悉 Windows Server 系統管理
+* 熟悉 Linux Ubuntu Server 系統管理
+* 熟悉 Docker / Docker Compose 安裝與配置
+* 熟悉 Nginx 反向代理配置
 * 熟悉 Cloudflare CDN 配置
-* 能開發出符合需求的網頁應用程式與 API
-
-#### 微服務程式
-
-* 熟悉微服務架構
-* 能開發出符合需求的微服務程式
-* 期貨高頻交易功能
-
-#### 伺服器管理
-
-* 熟悉 Amazon 雲端配置
-* 熟悉 IP / domain 購買配置
-* 熟悉 Win Server 系統管理
-* 熟習 linux Ubuntu Server 系統管理
-* 熟習 docker compose 安裝配置
-* 能安裝、設定、維護伺服器
+* 熟悉 IP / Domain / SSL 購買與配置
+* 能安裝、設定、維護伺服器環境
 
 #### 資料庫管理
 
 * 熟悉 MSSQL 資料庫
-* 能設計、管理、維護資料庫
+* 能設計、管理、優化與維護資料庫
 
-#### 主要開發語言
+---
 
-* C#  、 .net  、 .net framework
+### 技術棧總覽
 
-#### 伺服器使用
+| 類別 | 技術 |
+| --- | --- |
+| 程式語言 | C# (.NET、.NET Framework) |
+| 後端框架 | ASP.NET / ASP.NET Core |
+| 前端框架 | Vue、HTML / CSS / JavaScript |
+| 資料庫 | MSSQL |
+| 伺服器 | Windows Server、Linux Ubuntu Server |
+| 容器化 | Docker、Docker Compose |
+| 雲端 / 網路 | AWS、Nginx、Cloudflare CDN、IP / Domain / SSL |
+| 機器人平台 | Line Bot、Discord Bot、Telegram Bot |
+| 領域應用 | 高頻交易系統、微服務、報價訊號串接（股票 / 期貨 / 虛擬貨幣） |
 
-* Win Server
-* linux Ubuntu Server
+---
 
-#### 資料庫
+### 聯繫方式
 
-* MSSQL
+* **信箱**：awc0450056@gmail.com
+* **Telegram**：
 
-#### 聯繫方式
-
-信箱:awc0450056@gmail.com
-
-Telegram : 
 <img src="https://github.com/user-attachments/assets/956f56c6-e06b-4165-ae94-89e51358fa6e" width="300" height="300">
-
-
-
-
