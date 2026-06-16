@@ -81,53 +81,6 @@
 
 ---
 
-### 專案實績
-
-#### 🌸 Cellenya 妍雅 — 美容品牌官網 + 自助預約平台
-
-> 美容 / 醫美品牌官方網站結合線上自助預約系統，顧客可自行查詢美容師空檔、線上預約並接收 LINE 通知；後台管理預約、排班、行銷推播與內容（商業專案）。
-
-* **技術棧**：Nuxt 4 全端（Nitro，106 個 API 端點）、Vue 3.5 + PrimeVue 4、TypeScript、SQLite + **Prisma 7**、Vitest、Docker 多階段建置
-* **外部整合**：LINE（LIFF 會員綁定、Bot Webhook、Rich Menu 動態切換、多媒體行銷推播 + 分眾受眾估算）、SMTP Email、Nitro 排程任務
-* **技術亮點**：自助預約時段計算引擎（純函式設計、嚴謹時區處理、多據點排班 + 衝突檢測，Vitest 完整覆蓋）；三類角色（會員 / 後台 / 員工）JWT + Cookie 認證體系；深度 LINE 生態行銷漏斗
-
-#### 🤝 Cohort — 客戶經營（CRM）平台（二代）
-
-> 整合 Meta(Facebook) 廣告名單匯入、LINE / Messenger 訊息自動回覆與發送、業務輪詢分配與黑名單防護的一站式客戶經營平台。
-
-* **技術棧**：微服務架構（4 個 **.NET 10** 服務）、Vue 3 + Vite 7 + Naive UI 後台 SPA、Nuxt 3 公開站、**PostgreSQL 16 + EF Core 10**、Docker Compose
-* **外部整合**：Meta Graph API v22.0（廣告名單 / Messenger）、LINE（LineBotSDK / Webhook）、NPOI Excel 匯出、Swagger
-* **技術亮點**：多平台行銷自動化（廣告投放 → 名單 → 觸客 → 業務分配全流程）；微服務化與容器遷移（.NET 6→10、SQL Server→PostgreSQL）；自製 NuGet 套件（日誌 / 分頁 / 工具）提升跨專案重用
-
-#### 🚦 幼明燈 YouMingDeng — 幼兒園避雷與評價社群平台
-
-> 整合政府開放資料的幼兒園名冊與裁罰紀錄，建立「歷史裁罰永久保存庫」，以地圖三色燈號、AI 白話標籤、家長社群、補助試算與 LINE / Email 推播，協助家長挑選幼兒園。
-
-* **技術棧**：**C# / .NET 10** ASP.NET Core MVC、**PostgreSQL 16 + PostGIS 3.4**、EF Core 10 + NetTopologySuite、Bootstrap 5 + jQuery、Docker Compose、AWS EC2（Graviton）
-* **外部整合**：Gemini AI（裁罰公文白話分類 / 摘要）、Google Maps Geocoding、LINE Login + Messaging API、政府開放資料爬蟲（AngleSharp）
-* **技術亮點**：每日自動化政府資料管線 + 對抗下架的永久保存庫；PostGIS 地理空間 + 可稽核的機械式三色燈號；後台 / 前台會員雙 Cookie 認證的工程細節（antiforgery / DataProtection 內部機制）
-
-#### 🍼 小奶瓶日記 Feeding Memo — 新生兒共同照護記錄 PWA
-
-> 全家共同照護新生兒的記錄系統，記錄餵奶、排泄、睡眠、生長，並支援 Telegram 機器人快速記錄與定時提醒。
-
-* **技術棧**：Nuxt 4 全端 **PWA**、Vue 3 + **Tailwind v4 + DaisyUI v5** + Pinia、**PostgreSQL 16 + Drizzle ORM**、@vite-pwa/nuxt + Workbox、Docker、AWS EC2（Graviton）
-* **外部整合**：Telegram Bot（長輪詢）、Google OAuth 2.0、Web Push（VAPID）、Gmail SMTP、argon2 密碼雜湊
-* **技術亮點**：單一全端整合多管道輸入（PWA + Telegram，統一 source 來源）；以「家庭」為邊界的授權設計（ADR-001）；Web Push + Telegram 雙通道的通知 / 排程體系
-
-#### 🏠 MyHome 韓滷 — 個人接案形象站 + 內容管理後台
-
-> 以 Nuxt SSR 單一應用打包的接案形象網站，前台展示服務 / 作品 / 文章，後台提供完整 CRUD 與 SEO 管理，單一 Docker 容器即可上線。
-
-* **技術棧**：Nuxt 4 SSR、Vue 3 + PrimeVue 4、TypeScript、**檔案即資料庫**（Markdown + JSON）、pnpm
-* **資料層**：自製資料存取層（atomic write + per-file mutex），內容用 `.md` + frontmatter 便於 Git 版控
-* **部署**：Docker 多階段 + **GitHub Actions → GHCR**（打 tag 自動發版、semver 標籤）、Nginx Proxy Manager
-* **技術亮點**：零資料庫全端架構（僅靠 `./data` 目錄備份遷移）；單容器 SSR + 完整 CI/CD「打 tag 即發版」；內建 CMS + SEO（JSON-LD、可注入追蹤碼、favicon 多尺寸自動產生）
-
-> 📌 _LoanInsight（貸見解）等專案技術摘要整理中，後續補上。_
-
----
-
 ### 開源 / 自製套件
 
 於 GitHub 發佈多個 .NET 套件，提升開發效率與跨專案重用：
@@ -162,7 +115,7 @@
 
 ### 聯繫方式
 
-* **信箱**：awc0450056@gmail.com
+* **信箱**：ozakboy@ozakboy.life
 * **Telegram**：
 
 <img src="https://github.com/user-attachments/assets/956f56c6-e06b-4165-ae94-89e51358fa6e" width="300" height="300">
