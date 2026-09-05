@@ -39,7 +39,6 @@ const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Dock
 .hero-inner {
   position: relative;
   z-index: 1;
-  max-width: 800px;
 }
 
 .eyebrow {
@@ -68,7 +67,6 @@ const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Dock
   margin-top: 20px;
   font-size: 1.05rem;
   color: var(--hero-muted);
-  max-width: 62ch;
 }
 
 .chips {
