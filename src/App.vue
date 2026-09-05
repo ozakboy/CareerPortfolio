@@ -3,6 +3,7 @@ import SiteHeader from './components/SiteHeader.vue'
 import HeroSection from './components/HeroSection.vue'
 import SummarySection from './components/SummarySection.vue'
 import ValueSection from './components/ValueSection.vue'
+import ProjectsSection from './components/ProjectsSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import OpenSourceSection from './components/OpenSourceSection.vue'
 import TechStackSection from './components/TechStackSection.vue'
@@ -16,6 +17,7 @@ import SiteFooter from './components/SiteFooter.vue'
     <HeroSection />
     <SummarySection />
     <ValueSection />
+    <ProjectsSection />
     <SkillsSection />
     <OpenSourceSection />
     <TechStackSection />
