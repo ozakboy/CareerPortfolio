@@ -8,7 +8,7 @@ import { openSource } from '../data/resume'
       <h2 class="section-title">開源 / 自製套件</h2>
       <p class="section-intro">{{ openSource.intro }}</p>
       <ul class="grid">
-        <li v-for="item in openSource.items" :key="item.name">
+        <li v-for="item in openSource.items" :key="item.name" v-reveal>
           <component
             :is="item.url ? 'a' : 'div'"
             :href="item.url"
@@ -32,8 +32,20 @@ import { openSource } from '../data/resume'
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pkg {

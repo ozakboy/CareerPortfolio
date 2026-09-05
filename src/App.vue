@@ -9,6 +9,7 @@ import OpenSourceSection from './components/OpenSourceSection.vue'
 import TechStackSection from './components/TechStackSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import BackToTop from './components/BackToTop.vue'
 </script>
 
 <template>
@@ -24,4 +25,5 @@ import SiteFooter from './components/SiteFooter.vue'
     <ContactSection />
   </main>
   <SiteFooter />
+  <BackToTop />
 </template>

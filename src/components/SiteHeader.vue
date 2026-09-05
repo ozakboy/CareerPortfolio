@@ -2,8 +2,10 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { navItems, profile } from '../data/resume'
 import { useTheme } from '../composables/useTheme'
+import { useScrollSpy } from '../composables/useScrollSpy'
 
 const { theme, cycle } = useTheme()
+const { activeId } = useScrollSpy(navItems.map((item) => item.id))
 const menuOpen = ref(false)
 const scrolled = ref(false)
 
@@ -43,6 +45,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
           :key="item.id"
           :href="`#${item.id}`"
           class="nav-link"
+          :class="{ active: activeId === item.id }"
+          :aria-current="activeId === item.id ? 'true' : undefined"
           @click="menuOpen = false"
         >
           {{ item.label }}
@@ -144,6 +148,11 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   background: var(--bg-muted);
   color: var(--text);
   text-decoration: none;
+}
+
+.nav-link.active {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
 }
 
 .actions {

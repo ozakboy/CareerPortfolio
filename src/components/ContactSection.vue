@@ -9,7 +9,7 @@ import { profile } from '../data/resume'
       <p class="section-intro">歡迎洽談專案合作、系統開發或技術顧問，我會盡快回覆。</p>
       <ul class="cards">
         <li>
-          <a :href="`mailto:${profile.email}`" class="card contact-card">
+          <a :href="`mailto:${profile.email}`" v-reveal class="card contact-card">
             <span class="contact-icon" aria-hidden="true">✉️</span>
             <span class="contact-body">
               <span class="contact-label">信箱</span>
@@ -18,7 +18,7 @@ import { profile } from '../data/resume'
           </a>
         </li>
         <li>
-          <a :href="profile.lineUrl" class="card contact-card" target="_blank" rel="noopener">
+          <a :href="profile.lineUrl" v-reveal class="card contact-card" target="_blank" rel="noopener">
             <span class="contact-icon line" aria-hidden="true">LINE</span>
             <span class="contact-body">
               <span class="contact-label">LINE ID</span>
@@ -27,7 +27,7 @@ import { profile } from '../data/resume'
           </a>
         </li>
         <li>
-          <a :href="profile.github" class="card contact-card" target="_blank" rel="noopener">
+          <a :href="profile.github" v-reveal class="card contact-card" target="_blank" rel="noopener">
             <span class="contact-icon" aria-hidden="true">🐙</span>
             <span class="contact-body">
               <span class="contact-label">GitHub</span>

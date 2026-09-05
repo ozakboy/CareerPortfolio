@@ -8,7 +8,7 @@ import { skillGroups } from '../data/resume'
       <h2 class="section-title">工作技能</h2>
       <p class="section-intro">橫跨 .NET 與 Node 生態的後端、Vue / Nuxt 前端、資料庫、機器人整合到 DevOps 維運。</p>
       <div class="grid">
-        <article v-for="group in skillGroups" :key="group.title" class="card skill-card">
+        <article v-for="group in skillGroups" :key="group.title" v-reveal class="card skill-card">
           <header class="skill-header">
             <span class="skill-icon" aria-hidden="true">{{ group.icon }}</span>
             <h3 class="skill-title">{{ group.title }}</h3>
@@ -25,8 +25,14 @@ import { skillGroups } from '../data/resume'
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .skill-card {

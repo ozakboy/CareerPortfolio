@@ -88,6 +88,12 @@ a:hover {
   text-decoration: underline;
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 strong {
   color: var(--text);
   font-weight: 700;
@@ -123,8 +129,32 @@ img {
 }
 
 .section {
-  padding: 72px 0;
+  padding: clamp(56px, 6vw, 96px) 0;
   scroll-margin-top: var(--header-height);
+}
+
+/* 進場淡入（由 v-reveal 指令控制） */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .section + .section {
@@ -152,6 +182,7 @@ img {
 .section-intro {
   color: var(--text-muted);
   margin-bottom: 32px;
+  max-width: 80ch;
 }
 
 .card {

@@ -7,7 +7,7 @@ import { techStack } from '../data/resume'
     <div class="container">
       <h2 class="section-title">技術棧總覽</h2>
       <p class="section-intro">依類別整理的完整技術清單。</p>
-      <div class="card table-wrap">
+      <div v-reveal class="card table-wrap">
         <table class="stack-table">
           <thead>
             <tr>

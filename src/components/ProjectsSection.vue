@@ -8,7 +8,7 @@ import { projects } from '../data/resume'
       <h2 class="section-title">專案實績</h2>
       <p class="section-intro">{{ projects.intro }}</p>
       <div class="list">
-        <article v-for="project in projects.items" :key="project.name" class="card project">
+        <article v-for="project in projects.items" :key="project.name" v-reveal class="card project">
           <header class="project-head">
             <span class="project-icon" aria-hidden="true">{{ project.icon }}</span>
             <div class="project-titles">
@@ -101,7 +101,11 @@ import { projects } from '../data/resume'
 .project-body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 28px;
+}
+
+.project-desc {
+  max-width: 100ch;
 }
 
 .block-title {

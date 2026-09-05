@@ -6,7 +6,7 @@ import { summary } from '../data/resume'
   <section id="summary" class="section">
     <div class="container">
       <h2 class="section-title">職涯摘要</h2>
-      <div class="layout">
+      <div v-reveal class="layout">
         <div class="text">
           <!-- 內容為專案內部靜態資料，包含 <strong> 強調標記，故使用 v-html -->
           <p

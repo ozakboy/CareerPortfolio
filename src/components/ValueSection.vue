@@ -8,7 +8,7 @@ import { values } from '../data/resume'
       <h2 class="section-title">我能為客戶做到什麼</h2>
       <p class="section-intro">{{ values.intro }}</p>
       <ul class="grid">
-        <li v-for="(item, index) in values.items" :key="item.title" class="card value-card">
+        <li v-for="(item, index) in values.items" :key="item.title" v-reveal class="card value-card">
           <span class="index">{{ String(index + 1).padStart(2, '0') }}</span>
           <h3 class="value-title">{{ item.title }}</h3>
           <p class="value-desc">{{ item.description }}</p>
@@ -21,8 +21,20 @@ import { values } from '../data/resume'
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .value-card {
