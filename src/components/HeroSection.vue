@@ -21,7 +21,6 @@ const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Dock
       <div class="cta">
         <a :href="`mailto:${profile.email}`" class="btn primary">✉️ 聯絡我</a>
         <a :href="profile.github" class="btn ghost" target="_blank" rel="noopener">GitHub</a>
-        <a :href="profile.resumePdf" class="btn ghost" target="_blank" rel="noopener">📄 PDF 版履歷</a>
       </div>
     </div>
     <div class="hero-glow" aria-hidden="true"></div>

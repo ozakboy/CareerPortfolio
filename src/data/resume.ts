@@ -33,7 +33,6 @@ export const profile = {
   github: 'https://github.com/ozakboy',
   lineId: 'chengxun0729',
   lineUrl: 'https://line.me/ti/p/~chengxun0729',
-  resumePdf: 'https://github.com/ozakboy/CareerPortfolio/blob/main/README.pdf',
 }
 
 export const summary = {
