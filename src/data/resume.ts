@@ -286,7 +286,7 @@ export const openSource: { intro: string; items: OpenSourceItem[] } = {
     },
     {
       name: 'ozakboy.Gmail',
-      description: '輕量非同步 Gmail REST API + Google OAuth 2.0 用戶端，不依賴 Google.Apis；支援收發信（含附件）、標籤、批次取信、Token 自動刷新與退避重試（net8+ / netstandard2.0）',
+      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis；支援收發信、history.list 增量同步、標籤與附件，內建 RFC 822 寫入器與 429 / 5xx 指數退避重試，支援 netstandard2.0 ～ net10.0',
       url: 'https://github.com/ozakboy/ozakboy.Gmail',
     },
     {
@@ -298,11 +298,6 @@ export const openSource: { intro: string; items: OpenSourceItem[] } = {
       name: 'ozakboy.Help',
       description: '將複雜語法簡化封裝的 .NET Core 工具庫',
       url: 'https://github.com/ozakboy/ozakboy.Help',
-    },
-    {
-      name: 'ozakboy.Gmail',
-      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis；支援收發信、history.list 增量同步、標籤與附件，內建 RFC 822 寫入器與 429 / 5xx 指數退避重試，支援 netstandard2.0 ～ net10.0',
-      url: 'https://github.com/ozakboy/ozakboy.Gmail',
     },
     {
       name: 'ozakboy.Mail / ozakboy.FCM',
