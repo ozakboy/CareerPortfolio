@@ -1,3 +1,26 @@
+# CareerPortfolio
+
+> 🌐 **線上簡歷網站**：<https://ozakboy.github.io/CareerPortfolio/>
+>
+> 以 **Vue 3 + Vite + TypeScript** 建置，透過 GitHub Actions 自動部署至 GitHub Pages。
+> 網站內容集中於 [`src/data/resume.ts`](src/data/resume.ts)，更新履歷只需修改該檔案。
+
+<details>
+<summary>本機開發與部署</summary>
+
+```bash
+npm install        # 安裝相依套件
+npm run dev        # 本機開發（http://localhost:5173）
+npm run build      # 型別檢查 + 打包至 dist/
+npm run preview    # 預覽打包結果
+```
+
+推送到 `main` 分支後，`.github/workflows/deploy.yml` 會自動建置並發佈到 GitHub Pages。
+首次啟用請至 repo **Settings → Pages → Build and deployment → Source** 選擇 **GitHub Actions**。
+
+</details>
+
+---
 
 ### 職涯摘要
 
