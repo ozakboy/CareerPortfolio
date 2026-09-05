@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { profile } from '../data/resume'
 
-const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Docker / CI-CD', 'AWS']
+const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Docker / CI-CD', 'AWS', 'AI Coding', '本地 LLM / ComfyUI']
 </script>
 
 <template>

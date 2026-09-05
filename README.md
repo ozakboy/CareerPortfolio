@@ -30,9 +30,12 @@ npm run preview    # 預覽打包結果
 
 熟悉 Docker 容器化、CI/CD（GitHub Actions）、AWS 雲端（含 ARM/Graviton）、Nginx 反向代理與 SSL/CDN 等 DevOps 維運，並自行開發並發佈多個 NuGet / 開源套件。
 
+積極將 AI 導入開發流程與產品：以 **AI Coding**（Claude Code 等 AI Agent 工具）加速需求拆解、程式生成、重構與 code review；具備**本地 LLM** 自架部署與 **ComfyUI** AI 圖像生成工作流建置經驗，能在資料不外流的前提下提供私有化 AI 方案。
+
 * **主要語言**：C# (.NET 10 / .NET Framework)、TypeScript、JavaScript
 * **資料庫**：PostgreSQL (含 PostGIS)、MSSQL、SQLite
 * **雲端 / 維運**：AWS EC2、Docker、Nginx、GitHub Actions、Cloudflare
+* **AI 應用**：AI Coding（Claude Code）、本地 LLM、ComfyUI、Gemini API
 
 ---
 
@@ -43,7 +46,7 @@ npm run preview    # 預覽打包結果
 * **從 0 到 1 打造產品**：聽懂你的商業需求，規劃系統架構並一手包辦前端、後端、資料庫與上線部署，交付能直接營運的完整系統。
 * **量身打造商業系統**：CRM 客戶經營、線上預約、社群評價平台、品牌官網與內容管理（CMS）、行動 PWA 等，依你的業務流程客製，不是套版。
 * **打通行銷與客戶經營全流程**：串接 Meta(Facebook) 廣告名單、LINE / Telegram 自動回覆與推播、Email 通知，把「廣告 → 名單 → 觸客 → 成交」自動化，省下人力。
-* **導入 AI 提升效率**：整合 AI（如 Gemini）做內容分類、摘要與自動化處理，讓繁瑣作業自動完成。
+* **導入 AI 提升效率**：整合 AI（如 Gemini）做內容分類、摘要與自動化處理；可自架本地 LLM 讓資料不外流，並以 ComfyUI 建立 AI 圖像生成流程，讓繁瑣作業自動完成。
 * **資料整合與自動化**：開發爬蟲與資料管線，自動蒐集、清洗、保存外部資料，化為可用的商業資訊。
 * **穩定上線與長期維運**：以 Docker + CI/CD 自動化部署，搭配雲端伺服器、反向代理、SSL 憑證與監控，確保系統長期穩定運作。
 * **既有系統升級與維護**：協助老舊系統技術升級、效能優化、資料庫遷移與功能擴充，延長系統壽命。
@@ -107,6 +110,14 @@ npm run preview    # 預覽打包結果
 * 網站爬蟲與資料管線（AngleSharp、政府開放資料）
 * 報價訊號串接：股票 / 期貨 / 虛擬貨幣
 
+#### AI 應用 / AI 輔助開發
+
+* **AI Coding**：以 Claude Code 等 AI Agent 工具輔助需求拆解、程式生成、重構、測試與 code review，提升開發效率
+* **本地 LLM**：自架開源大型語言模型推論服務，建置私有化、離線可用的 AI 應用，資料不外流
+* **ComfyUI**：AI 圖像生成工作流（workflow）建置與自動化，整合至內容產製流程
+* LLM API 整合：Gemini 等雲端模型串接，內容分類、摘要生成與自動化處理
+* Prompt 設計與 AI 功能落地：將 AI 能力嵌入 CRM、CMS 等既有系統
+
 #### DevOps / 伺服器維運
 
 * Docker 多階段建置、Docker Compose 多服務編排
@@ -145,15 +156,14 @@ npm run preview    # 預覽打包結果
 | 容器 / CI-CD | Docker、Docker Compose、GitHub Actions、GHCR |
 | 雲端 / 網路 | AWS EC2（ARM/Graviton）、Nginx / Nginx Proxy Manager、OpenResty、Cloudflare CDN、Let's Encrypt SSL |
 | 機器人 / 通訊 | LINE（Messaging / LIFF / Rich Menu）、Telegram Bot、Discord Bot、Web Push、SMTP |
-| 第三方 / AI | Meta Graph API、Google Maps / OAuth、Gemini AI、AngleSharp 爬蟲 |
+| 第三方服務 | Meta Graph API、Google Maps / OAuth、AngleSharp 爬蟲 |
+| AI 應用 | AI Coding（Claude Code）、本地 LLM、ComfyUI、Gemini API |
 | 測試 / 工具 | Vitest、NPOI、Swagger / OpenAPI、PM2 |
-| 領域應用 | CRM、線上預約、社群平台、PWA、高頻交易、微服務、報價串接 |
+| 領域應用 | CRM、線上預約、社群平台、PWA、高頻交易、微服務、報價串接、AI 應用 |
 
 ---
 
 ### 聯繫方式
 
 * **信箱**：ozakboy@ozakboy.life
-* **Telegram**：
-
-<img src="https://github.com/user-attachments/assets/956f56c6-e06b-4165-ae94-89e51358fa6e" width="300" height="300">
+* **LINE ID**：chengxun0729

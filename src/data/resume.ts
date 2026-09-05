@@ -31,7 +31,8 @@ export const profile = {
   tagline: 'C# / .NET 10 × TypeScript / Vue / Nuxt',
   email: 'ozakboy@ozakboy.life',
   github: 'https://github.com/ozakboy',
-  telegramQr: 'https://github.com/user-attachments/assets/956f56c6-e06b-4165-ae94-89e51358fa6e',
+  lineId: 'chengxun0729',
+  lineUrl: 'https://line.me/ti/p/~chengxun0729',
   resumePdf: 'https://github.com/ozakboy/CareerPortfolio/blob/main/README.pdf',
 }
 
@@ -40,11 +41,13 @@ export const summary = {
     '具備紮實軟體開發基礎的<strong>全端工程師</strong>，主力技術橫跨 <strong>C# / .NET 10</strong> 後端生態與 <strong>TypeScript / Vue / Nuxt</strong> 前端全端生態，能獨立完成從需求分析、系統架構設計、前後端開發、資料庫設計到容器化部署與雲端維運的完整產品開發週期。',
     '擅長將商業需求落地為可上線的系統，實戰經驗涵蓋 <strong>CRM 客戶經營平台、線上預約系統、社群評價平台、IoT 記錄型 PWA、品牌官網與內容管理系統</strong>，並深度整合 LINE、Telegram、Meta(Facebook)、Google、AI(Gemini) 等外部生態與 API。同時具備<strong>微服務架構、高頻交易系統、即時報價訊號串接（股票 / 期貨 / 虛擬貨幣）</strong>的開發能力。',
     '熟悉 Docker 容器化、CI/CD（GitHub Actions）、AWS 雲端（含 ARM/Graviton）、Nginx 反向代理與 SSL/CDN 等 DevOps 維運，並自行開發並發佈多個 NuGet / 開源套件。',
+    '積極將 AI 導入開發流程與產品：以 <strong>AI Coding</strong>（Claude Code 等 AI Agent 工具）加速需求拆解、程式生成、重構與 code review；具備<strong>本地 LLM</strong> 自架部署與 <strong>ComfyUI</strong> AI 圖像生成工作流建置經驗，能在資料不外流的前提下提供私有化 AI 方案。',
   ],
   highlights: [
     { label: '主要語言', value: 'C# (.NET 10 / .NET Framework)、TypeScript、JavaScript' },
     { label: '資料庫', value: 'PostgreSQL (含 PostGIS)、MSSQL、SQLite' },
     { label: '雲端 / 維運', value: 'AWS EC2、Docker、Nginx、GitHub Actions、Cloudflare' },
+    { label: 'AI 應用', value: 'AI Coding（Claude Code）、本地 LLM、ComfyUI、Gemini API' },
   ],
 }
 
@@ -65,7 +68,7 @@ export const values: { intro: string; items: ValueItem[] } = {
     },
     {
       title: '導入 AI 提升效率',
-      description: '整合 AI（如 Gemini）做內容分類、摘要與自動化處理，讓繁瑣作業自動完成。',
+      description: '整合 AI（如 Gemini）做內容分類、摘要與自動化處理；可自架本地 LLM 讓資料不外流，並以 ComfyUI 建立 AI 圖像生成流程，讓繁瑣作業自動完成。',
     },
     {
       title: '資料整合與自動化',
@@ -163,6 +166,17 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    title: 'AI 應用 / AI 輔助開發',
+    icon: '🧠',
+    items: [
+      'AI Coding：以 Claude Code 等 AI Agent 工具輔助需求拆解、程式生成、重構、測試與 code review，提升開發效率',
+      '本地 LLM：自架開源大型語言模型推論服務，建置私有化、離線可用的 AI 應用，資料不外流',
+      'ComfyUI：AI 圖像生成工作流（workflow）建置與自動化，整合至內容產製流程',
+      'LLM API 整合：Gemini 等雲端模型串接，內容分類、摘要生成與自動化處理',
+      'Prompt 設計與 AI 功能落地：將 AI 能力嵌入 CRM、CMS 等既有系統',
+    ],
+  },
+  {
     title: 'DevOps / 伺服器維運',
     icon: '🚀',
     items: [
@@ -219,9 +233,10 @@ export const techStack: TechStackRow[] = [
   { category: '容器 / CI-CD', technologies: ['Docker', 'Docker Compose', 'GitHub Actions', 'GHCR'] },
   { category: '雲端 / 網路', technologies: ['AWS EC2（ARM/Graviton）', 'Nginx / Nginx Proxy Manager', 'OpenResty', 'Cloudflare CDN', "Let's Encrypt SSL"] },
   { category: '機器人 / 通訊', technologies: ['LINE（Messaging / LIFF / Rich Menu）', 'Telegram Bot', 'Discord Bot', 'Web Push', 'SMTP'] },
-  { category: '第三方 / AI', technologies: ['Meta Graph API', 'Google Maps / OAuth', 'Gemini AI', 'AngleSharp 爬蟲'] },
+  { category: '第三方服務', technologies: ['Meta Graph API', 'Google Maps / OAuth', 'AngleSharp 爬蟲'] },
+  { category: 'AI 應用', technologies: ['AI Coding（Claude Code）', '本地 LLM', 'ComfyUI', 'Gemini API'] },
   { category: '測試 / 工具', technologies: ['Vitest', 'NPOI', 'Swagger / OpenAPI', 'PM2'] },
-  { category: '領域應用', technologies: ['CRM', '線上預約', '社群平台', 'PWA', '高頻交易', '微服務', '報價串接'] },
+  { category: '領域應用', technologies: ['CRM', '線上預約', '社群平台', 'PWA', '高頻交易', '微服務', '報價串接', 'AI 應用'] },
 ]
 
 export const navItems = [

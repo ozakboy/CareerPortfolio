@@ -7,8 +7,8 @@ import { profile } from '../data/resume'
     <div class="container">
       <h2 class="section-title">聯繫方式</h2>
       <p class="section-intro">歡迎洽談專案合作、系統開發或技術顧問，我會盡快回覆。</p>
-      <div class="layout">
-        <div class="cards">
+      <ul class="cards">
+        <li>
           <a :href="`mailto:${profile.email}`" class="card contact-card">
             <span class="contact-icon" aria-hidden="true">✉️</span>
             <span class="contact-body">
@@ -16,6 +16,17 @@ import { profile } from '../data/resume'
               <span class="contact-value">{{ profile.email }}</span>
             </span>
           </a>
+        </li>
+        <li>
+          <a :href="profile.lineUrl" class="card contact-card" target="_blank" rel="noopener">
+            <span class="contact-icon line" aria-hidden="true">LINE</span>
+            <span class="contact-body">
+              <span class="contact-label">LINE ID</span>
+              <span class="contact-value">{{ profile.lineId }}</span>
+            </span>
+          </a>
+        </li>
+        <li>
           <a :href="profile.github" class="card contact-card" target="_blank" rel="noopener">
             <span class="contact-icon" aria-hidden="true">🐙</span>
             <span class="contact-body">
@@ -23,37 +34,24 @@ import { profile } from '../data/resume'
               <span class="contact-value">github.com/{{ profile.name }}</span>
             </span>
           </a>
-        </div>
-        <figure class="card qr">
-          <img :src="profile.telegramQr" width="300" height="300" alt="Telegram QR Code" loading="lazy" />
-          <figcaption>
-            <strong>Telegram</strong>
-            <span>掃描 QR Code 加我好友</span>
-          </figcaption>
-        </figure>
-      </div>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
 <style scoped>
-.layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
-  align-items: start;
-}
-
 .cards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
 }
 
 .contact-card {
   display: flex;
   align-items: center;
   gap: 16px;
+  height: 100%;
   padding: 18px 22px;
   color: inherit;
   transition: transform 0.18s, border-color 0.18s;
@@ -76,6 +74,14 @@ import { profile } from '../data/resume'
   flex: none;
 }
 
+.contact-icon.line {
+  background: #06c755;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
 .contact-body {
   display: flex;
   flex-direction: column;
@@ -92,39 +98,5 @@ import { profile } from '../data/resume'
   font-weight: 600;
   color: var(--text);
   overflow-wrap: anywhere;
-}
-
-.qr {
-  margin: 0;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.qr img {
-  width: 240px;
-  height: 240px;
-  border-radius: 10px;
-  background: #fff;
-}
-
-.qr figcaption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-@media (max-width: 720px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .qr {
-    justify-self: center;
-  }
 }
 </style>
