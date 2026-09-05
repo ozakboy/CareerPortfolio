@@ -99,8 +99,28 @@ export const values: { intro: string; items: ValueItem[] } = {
 }
 
 export const projects: { intro: string; items: Project[] } = {
-  intro: '以下為近期完整交付的商業與個人專案，涵蓋品牌官網、CRM、社群平台、PWA 與內容管理系統。',
+  intro: '以下為近期完整交付的商業與個人專案，涵蓋 AI 社群發文平台、品牌官網、CRM、社群平台、PWA 與內容管理系統。',
   items: [
+    {
+      icon: '🌱',
+      name: 'Sower',
+      subtitle: 'AI 驅動的多平台社群發文與商品上架平台',
+      description:
+        '集中管理品牌的 Facebook / Instagram / Threads / TikTok 發文：內建品牌調性與違禁詞設定、人工審核流程、排程自動發布、串文切分與媒體素材庫，並提供 MCP Server 讓 AI Agent 直接產稿送審、建立待上架商品草稿，把「AI 寫稿 → 人審 → 自動發布」串成一條線。',
+      stack: ['C# / .NET 10 Web API', '背景排程服務（BackgroundService）', 'Vue 3 後台 SPA', 'PostgreSQL 16', 'MCP Server（Model Context Protocol）', 'Docker'],
+      integrations: [
+        'Meta Graph API（Facebook 粉絲專頁、Instagram、Threads 發布與串文留言）',
+        'TikTok 內容發布 API',
+        'MCP 工具集：品牌資訊、送稿 / 驗稿 / 改稿 / 撤稿、狀態查詢、素材庫、商品草稿',
+        '媒體素材庫：遠端抓取、去重引用、每日配額控管',
+      ],
+      highlights: [
+        '人在迴圈（Human-in-the-loop）設計：AI 送進的稿件一律待審，營運者按下發布才真正上線，兼顧自動化與品牌安全',
+        '依各平台字數 / 媒體上限逐平台驗證，長文以標記自動切成 Threads 串文或 FB / IG 留言續篇',
+        '品牌設定驅動的 AI 寫作規範：定位、語氣、受眾、常用標籤與違禁詞替換，讓 AI 產出符合品牌調性',
+        '商品草稿工作流：AI 依圖片辨識分組、對應既有分類與規格，價格保留由人工決定',
+      ],
+    },
     {
       icon: '🌸',
       name: 'Cellenya 妍雅',
@@ -324,7 +344,7 @@ export const techStack: TechStackRow[] = [
   { category: '雲端 / 網路', technologies: ['AWS EC2（ARM/Graviton）', 'Nginx / Nginx Proxy Manager', 'OpenResty', 'Cloudflare CDN', "Let's Encrypt SSL"] },
   { category: '機器人 / 通訊', technologies: ['LINE（Messaging / LIFF / Rich Menu）', 'Telegram Bot', 'Discord Bot', 'Web Push', 'SMTP', 'Gmail API'] },
   { category: '第三方服務', technologies: ['Meta Graph API', 'Google Maps / OAuth', 'AngleSharp 爬蟲'] },
-  { category: 'AI 應用', technologies: ['AI Coding（Claude Code）', '本地 LLM', 'ComfyUI', 'Gemini API'] },
+  { category: 'AI 應用', technologies: ['AI Coding（Claude Code）', 'MCP Server 開發', '本地 LLM', 'ComfyUI', 'Gemini API'] },
   { category: '測試 / 工具', technologies: ['Vitest', 'NPOI', 'Swagger / OpenAPI', 'PM2'] },
   { category: '領域應用', technologies: ['CRM', '線上預約', '社群平台', 'PWA', '高頻交易', '微服務', '報價串接', 'AI 應用'] },
 ]
