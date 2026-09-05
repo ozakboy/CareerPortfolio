@@ -107,7 +107,7 @@ export const projects: { intro: string; items: Project[] } = {
       subtitle: 'AI 驅動的多平台社群發文與商品上架平台',
       description:
         '集中管理品牌的 Facebook / Instagram / Threads / TikTok 發文：內建品牌調性與違禁詞設定、人工審核流程、排程自動發布、串文切分與媒體素材庫，並提供 MCP Server 讓 AI Agent 直接產稿送審、建立待上架商品草稿，把「AI 寫稿 → 人審 → 自動發布」串成一條線。',
-      stack: ['C# / .NET 10 Web API', '背景排程服務（BackgroundService）', 'Vue 3 後台 SPA', 'PostgreSQL 16', 'MCP Server（Model Context Protocol）', 'Docker'],
+      stack: ['C# / .NET 10 Web API', '背景排程服務（BackgroundService）', 'Vue 3 後台 SPA', 'PostgreSQL', 'MCP Server（Model Context Protocol）', 'Docker'],
       integrations: [
         'Meta Graph API（Facebook 粉絲專頁、Instagram、Threads 發布與串文留言）',
         'TikTok 內容發布 API',
