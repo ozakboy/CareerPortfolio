@@ -300,6 +300,11 @@ export const openSource: { intro: string; items: OpenSourceItem[] } = {
       url: 'https://github.com/ozakboy/ozakboy.Help',
     },
     {
+      name: 'ozakboy.Gmail',
+      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis；支援收發信、history.list 增量同步、標籤與附件，內建 RFC 822 寫入器與 429 / 5xx 指數退避重試，支援 netstandard2.0 ～ net10.0',
+      url: 'https://github.com/ozakboy/ozakboy.Gmail',
+    },
+    {
       name: 'ozakboy.Mail / ozakboy.FCM',
       description: '郵件發送與推播封裝',
       url: 'https://github.com/ozakboy?tab=repositories',
@@ -322,7 +327,7 @@ export const techStack: TechStackRow[] = [
   { category: '認證 / 安全', technologies: ['JWT', 'Cookie', 'OAuth 2.0', 'bcrypt / argon2', 'Zod', 'DataProtection'] },
   { category: '容器 / CI-CD', technologies: ['Docker', 'Docker Compose', 'GitHub Actions', 'GHCR'] },
   { category: '雲端 / 網路', technologies: ['AWS EC2（ARM/Graviton）', 'Nginx / Nginx Proxy Manager', 'OpenResty', 'Cloudflare CDN', "Let's Encrypt SSL"] },
-  { category: '機器人 / 通訊', technologies: ['LINE（Messaging / LIFF / Rich Menu）', 'Telegram Bot', 'Discord Bot', 'Web Push', 'SMTP'] },
+  { category: '機器人 / 通訊', technologies: ['LINE（Messaging / LIFF / Rich Menu）', 'Telegram Bot', 'Discord Bot', 'Web Push', 'SMTP', 'Gmail API'] },
   { category: '第三方服務', technologies: ['Meta Graph API', 'Google Maps / OAuth', 'AngleSharp 爬蟲'] },
   { category: 'AI 應用', technologies: ['AI Coding（Claude Code）', '本地 LLM', 'ComfyUI', 'Gemini API'] },
   { category: '測試 / 工具', technologies: ['Vitest', 'NPOI', 'Swagger / OpenAPI', 'PM2'] },
