@@ -285,6 +285,11 @@ export const openSource: { intro: string; items: OpenSourceItem[] } = {
       url: 'https://github.com/ozakboy/OzaLog',
     },
     {
+      name: 'ozakboy.Gmail',
+      description: '輕量非同步 Gmail REST API + Google OAuth 2.0 用戶端，不依賴 Google.Apis；支援收發信（含附件）、標籤、批次取信、Token 自動刷新與退避重試（net8+ / netstandard2.0）',
+      url: 'https://github.com/ozakboy/ozakboy.Gmail',
+    },
+    {
       name: 'ozakboy.PageData',
       description: '支援 List<T> / IQueryable<T> / IEnumerable<T> 的彈性分頁函式庫',
       url: 'https://github.com/ozakboy/ozakboy.PageData',
