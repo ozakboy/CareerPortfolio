@@ -5,7 +5,7 @@ const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Dock
 
 const stats = [
   { value: projects.items.length, label: '完整交付專案', href: '#projects' },
-  { value: openSource.items.length, label: '開源 / NuGet 套件', href: '#opensource' },
+  { value: openSource.packageCount, label: '開源 / NuGet 套件', href: '#opensource' },
   { value: skillGroups.length, label: '技術領域', href: '#skills' },
 ]
 

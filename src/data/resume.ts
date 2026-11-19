@@ -48,15 +48,15 @@ export const profile = {
 export const summary = {
   paragraphs: [
     '具備紮實軟體開發基礎的<strong>全端工程師</strong>，主力技術橫跨 <strong>C# / .NET 10</strong> 後端生態與 <strong>TypeScript / Vue / Nuxt</strong> 前端全端生態，能獨立完成從需求分析、系統架構設計、前後端開發、資料庫設計到容器化部署與雲端維運的完整產品開發週期。',
-    '擅長將商業需求落地為可上線的系統，實戰經驗涵蓋 <strong>CRM 客戶經營平台、線上預約系統、社群評價平台、IoT 記錄型 PWA、品牌官網與內容管理系統</strong>，並深度整合 LINE、Telegram、Meta(Facebook)、Google、AI(Gemini) 等外部生態與 API。同時具備<strong>微服務架構、高頻交易系統、即時報價訊號串接（股票 / 期貨 / 虛擬貨幣）</strong>的開發能力。',
-    '熟悉 Docker 容器化、CI/CD（GitHub Actions）、AWS 雲端（含 ARM/Graviton）、Nginx 反向代理與 SSL/CDN 等 DevOps 維運，並自行開發並發佈多個 NuGet / 開源套件。',
-    '積極將 AI 導入開發流程與產品：以 <strong>AI Coding</strong>（Claude Code 等 AI Agent 工具）加速需求拆解、程式生成、重構與 code review；具備<strong>本地 LLM</strong> 自架部署與 <strong>ComfyUI</strong> AI 圖像生成工作流建置經驗，能在資料不外流的前提下提供私有化 AI 方案。',
+    '擅長將商業需求落地為可上線的系統，實戰經驗涵蓋 <strong>CRM 客戶經營平台、線上預約系統、社群評價平台、IoT 記錄型 PWA、品牌官網與內容管理系統</strong>，並深度整合 LINE、Telegram、Meta(Facebook)、Google、AI(Gemini) 等外部生態與 API。同時具備<strong>微服務架構與交易系統</strong>實戰：台股當沖桌面系統接永豐金 / 群益行情、幣安永續合約引擎，從行情落地、策略回測、風控閘門到帳務對帳完整自建。',
+    '熟悉 Docker 容器化、CI/CD（GitHub Actions）、AWS 雲端（含 ARM/Graviton）、Nginx 反向代理與 SSL/CDN 等 DevOps 維運，並自行開發並發佈 <strong>29 個 NuGet 套件</strong>（交易、LINE、AI、HTTP 管線自成體系）。',
+    '積極將 AI 導入開發流程與產品：以 <strong>AI Coding</strong>（Claude Code 等 AI Agent 工具）加速需求拆解、程式生成、重構與 code review，並自建跨專案的 AI 開發基礎設施（技能、護欄、多車道路由）；為產品開發 <strong>MCP Server</strong> 讓外部 AI 安全操作平台；具備<strong>本地 LLM</strong> 自架部署與 <strong>ComfyUI</strong> AI 圖像生成工作流建置經驗，能在資料不外流的前提下提供私有化 AI 方案。',
   ],
   highlights: [
     { label: '主要語言', value: 'C# (.NET 10 / .NET Framework)、TypeScript、JavaScript' },
     { label: '資料庫', value: 'PostgreSQL (含 PostGIS)、MSSQL、SQLite' },
     { label: '雲端 / 維運', value: 'AWS EC2、Docker、Nginx、GitHub Actions、Cloudflare' },
-    { label: 'AI 應用', value: 'AI Coding（Claude Code）、本地 LLM、ComfyUI、Gemini API' },
+    { label: 'AI 應用', value: 'AI Coding（Claude Code）、MCP Server、本地 LLM、ComfyUI、Gemini API' },
   ],
 }
 
@@ -99,26 +99,93 @@ export const values: { intro: string; items: ValueItem[] } = {
 }
 
 export const projects: { intro: string; items: Project[] } = {
-  intro: '以下為近期完整交付的商業與個人專案，涵蓋 AI 社群發文平台、品牌官網、CRM、社群平台、PWA 與內容管理系統。',
+  intro: '以下為近期完整交付的商業與個人專案，涵蓋 AI 輔助交易桌面系統、本機服務控制中心、AI 開發基礎建設、AI 社群經營平台、品牌官網、CRM、社群平台、PWA 與內容管理系統。',
   items: [
+    {
+      icon: '📈',
+      name: 'TideTrade',
+      subtitle: '台股當沖 AI 輔助桌面交易系統',
+      description:
+        '接永豐金 Shioaji 與群益 SKCOM 行情，Tick、五檔、K 線全部落在本機 SQLite；用 Claude 討論策略、生成 C# 策略碼，Roslyn 即時編譯後本地回測，盤中以 shadow → advisory → auto 三段放權執行，每一筆都過風控閘門，帳務面板即時顯示扣完當沖稅費的淨損益（個人專案，真錢上線）。',
+      stack: ['C# 14 / .NET 10', 'WPF + CommunityToolkit.Mvvm（三螢幕佈局、面板可拆出獨立視窗）', 'SQLite + EF Core（Tick 批次落地、本地優先回補）', 'Roslyn 動態編譯策略（隔離 AssemblyLoadContext + 參照白名單）', 'TradingView Lightweight Charts（WebView2 內嵌）', '安裝程式與 App 內自動更新'],
+      integrations: [
+        '永豐金 Shioaji 官方本機 HTTP + SSE（行情訂閱、下單、委託回報、帳務對帳）',
+        '群益 SKCOM（外匯與海外期貨行情，兩家資料互補）',
+        '證交所 / 櫃買 OpenAPI（日 K 回補、處置股、注意股、暫停交易）',
+        'AI Copilot 可切換 Claude Code CLI、ChatGPT 或本地模型',
+        '開放 Claude Code 直接讀取執行中 App 的資料庫、日誌與即時狀態',
+      ],
+      highlights: [
+        '三週內從 M0 骨架迭代到 v0.32，十一個子專案分層（Core / Market / Engine / Backtest / Ai / App…），自動化測試 5,900+ 個',
+        'AI Copilot：自然語言建立與修改策略 → 產生 C# → 本地回測（勝率、獲利因子、MDD、穩健性檢驗、逐日進出場）→ 一鍵上盤中 shadow；Copilot 能自己查資料、自我迴圈優化策略',
+        '風控閘門：單日虧損鎖單、單筆張數與持倉檔數上限、13:20 強制平倉、一鍵全平；內建個人交易限制（每日買進額度、損益平衡檔數）',
+        '逐筆大單偵測含「散單合併」抓拆成小單的程式單；處置股 / 注意股自動擋下；到價通知、持倉走弱警示',
+        '相依政策三層制：自研 Ozakboy.* 套件優先，TradeKit.Shioaji / Capital / Indicators、Ai.ClaudeCli 等隨專案同步發佈到 NuGet',
+      ],
+    },
+    {
+      icon: '🛰️',
+      name: 'LocalNexus',
+      subtitle: '本機服務與 AI 控制中心',
+      description:
+        '跑在開發機上的控制台：把本機的 Web 站台、API、資料庫、Ollama / ComfyUI、cloudflared 隧道放在同一張拓撲圖上，看得到即時狀態與 CPU / 記憶體 / VRAM 用量，可一鍵啟停、依相依連動、更新隧道；服務閒置自動停、有請求自動喚醒，開機後不用再開一堆命令列視窗。',
+      stack: ['.NET 10 ASP.NET Core Minimal API + SignalR', 'EF Core SQLite（設定表與執行期表分離）', 'Vue 3 + Vite + TypeScript + Tailwind v4 + Pinia', '自寫 SVG 拓撲圖 / 軌道總覽 / 儀表元件（不裝圖表函式庫）', 'xUnit + Vitest', 'Windows 工作排程器常駐（最高權限、免 UAC、單一程序同時提供 API 與前端）'],
+      integrations: [
+        'cloudflared（接管啟動、log 串流、GitHub Releases 一鍵更新與失敗自動回滾、畫面上新增對外網址含 DNS）',
+        'Ollama（接管啟停、推論代理、模型拉取 / 刪除、GPU 監看、ComfyUI 忙碌時自動讓出顯示卡記憶體）',
+        'Telegram 告警（異常與恢復、更新結果、Agent 啟動）',
+        'Windows 系統 API（LISTENING Port 對應 PID、程序接手、服務控制、DPAPI）',
+      ],
+      highlights: [
+        '三天內以 M0 → M8 八個里程碑交付 v0.7，每個里程碑先凍結規格（docs/specs）再施工，後端 1,276 + 前端 578 個測試，正式環境真機驗收',
+        '服務常駐代理：Agent 常駐原 Port、服務改聽內部 Port，閒置自動停、請求進來自動喚醒並帶起上游，支援 WebSocket 與串流',
+        '相依連動啟停（循環檢測、失敗回滾）、意外結束自動重啟、Agent 重啟後依 PID + 啟動時間重新接手既有程序，控制中心重啟不讓服務跟著斷',
+        '安全設計：PIN 登入 BCrypt + 連錯鎖定、Host / Origin 白名單擋 CSRF 與 DNS rebinding、只執行資料庫裡已設定的啟動指令、憑證只存路徑、log 推前端前先遮罩',
+      ],
+    },
+    {
+      icon: '🧰',
+      name: 'claude-harness',
+      subtitle: '個人跨專案 AI 開發基礎設施',
+      description:
+        '把 AI 輔助開發的規範、技能、角色與護欄集中成一個 repo，安裝後所有專案的 Claude Code 自動繼承，同一份來源連動到 OpenAI Codex；以「五車道」路由把工作依成本與風險分派到主模型、月額 headless、Codex、本地模型與媒體生成，判斷留在主迴圈、雜活往便宜的車道送。',
+      stack: ['Claude Code Skills / Agents / Hooks / Plugin（mods）', 'PowerShell + Bash 雙平台安裝腳本（junction 連結，改了即生效）', 'Node.js 路由、狀態與帳本工具（dispatch / status / ledger）', 'Claude Agent SDK headless 派工', 'Ollama / Strata 本地模型車道'],
+      integrations: [
+        'OpenAI Codex（AGENTS.md、hooks、子代理設定自動產生，審查車道）',
+        'Anthropic Console 月額 headless 執行',
+        '本地 LLM（Ollama Anthropic 相容端點、Strata），互動視窗與 headless 共用隔離設定目錄',
+        'ComfyUI / Qwen3-TTS / ACE-Step 媒體生成車道',
+        '上游開源 skill 自動收割與供應鏈安全掃描（13+ 來源）',
+      ],
+      highlights: [
+        '43 個 skill、5 個 agent、5 道 hook 護欄（攔危險 git 指令、禁讀機密檔、Bash 後掃描控制字元、本地車道禁止連網），62 個版本持續演進',
+        '經驗回收迴圈：專案踩坑先記 inbox，收尾時消化回流成 skill 與全域規範，四個月累積回流逾百件實戰經驗',
+        'AI 分工路由：五車道取代三層，帳本跨程序鎖與預留額、額度錯誤自動冷卻、GPU 忙碌讓渡；以五題改檔基準挑選本地模型',
+        '使用率記錄與冷熱分區、skill 收錄前靜態掃描加語意複核、每週自動收割上游',
+      ],
+    },
     {
       icon: '🌱',
       name: 'Sower',
-      subtitle: 'AI 驅動的多平台社群發文與商品上架平台',
+      subtitle: '全自動 AI 社群帳號經營與代購銷售平台',
       description:
-        '集中管理品牌的 Facebook / Instagram / Threads / TikTok 發文：內建品牌調性與違禁詞設定、人工審核流程、排程自動發布、串文切分與媒體素材庫，並提供 MCP Server 讓 AI Agent 直接產稿送審、建立待上架商品草稿，把「AI 寫稿 → 人審 → 自動發布」串成一條線。',
-      stack: ['C# / .NET 10 Web API', '背景排程服務（BackgroundService）', 'Vue 3 後台 SPA', 'PostgreSQL', 'MCP Server（Model Context Protocol）', 'Docker'],
+        '集中經營品牌的 Facebook / Instagram / Threads / TikTok：每天到點自動發文、文案配圖 AI 生成、留言由 AI 草擬回覆，人工審核必經；再往下接代購限量搶購、訂閱金流、信箱 AI 分類與 MCP 接口，讓外部 AI 用 Sower 帳號授權後直接產稿送審、建立待上架商品，把「AI 寫稿 → 人審 → 自動發布 → 留言經營 → 下單收款」串成一條線。',
+      stack: ['C# / .NET 10 Web API + 背景排程（到點發文、留言輪詢）', 'Sower.Worker 本機 Windows 服務（Claude 產文、分級）', 'Vue 3 後台 SPA', 'PostgreSQL + EF Core', 'MCP Server + OAuth 2.1 授權伺服器', 'Telegram Bot', 'Docker Compose（healthcheck、煙霧測試、回滾點）'],
       integrations: [
-        'Meta Graph API（Facebook 粉絲專頁、Instagram、Threads 發布與串文留言）',
+        'Meta Graph API（Facebook 粉絲專頁、Instagram、Threads 發布、串文與留言；資料刪除 / 解除授權回呼）',
         'TikTok 內容發布 API',
+        'PayUni 訂閱金流（首刷、月繳 / 年繳、dunning）與 LINE Pay 官方直連並存',
+        'LINE 群組「#上架」：傳一句話加照片就上架並產出文案、下單連結與待審貼文',
+        'Ollama 本地模型（Gemma4 26B 留言草稿）、Gmail 信箱 AI 分類（規則書衍生模型、近鄰記憶、風險複核）',
         'MCP 工具集：品牌資訊、送稿 / 驗稿 / 改稿 / 撤稿、狀態查詢、素材庫、商品草稿',
-        '媒體素材庫：遠端抓取、去重引用、每日配額控管',
       ],
       highlights: [
-        '人在迴圈（Human-in-the-loop）設計：AI 送進的稿件一律待審，營運者按下發布才真正上線，兼顧自動化與品牌安全',
-        '依各平台字數 / 媒體上限逐平台驗證，長文以標記自動切成 Threads 串文或 FB / IG 留言續篇',
-        '品牌設定驅動的 AI 寫作規範：定位、語氣、受眾、常用標籤與違禁詞替換，讓 AI 產出符合品牌調性',
-        '商品草稿工作流：AI 依圖片辨識分組、對應既有分類與規格，價格保留由人工決定',
+        '人在迴圈（Human-in-the-loop）設計：AI 送進的稿件與留言回覆一律待審，營運者按下發布才真正上線，兼顧自動化與品牌安全',
+        'MCP OAuth 2.1 授權伺服器：外部 AI 用 Sower 帳號授權連接，送出類工具一律寫進待審佇列，AI 不得直接發送',
+        '留言回覆 AI：先看對方在做什麼、學人工已回的寫法、每週自動檢討；可指定帳號不讓 AI 回，本地模型批次處理完即釋放顯存',
+        '代購限量搶購：矩陣上架、保留單倒數、候補遞補、庫存異動與低庫存告警、客人自助退貨與部分出貨',
+        '依各平台字數 / 媒體上限逐平台驗證，長文自動切成 Threads 串文或 FB / IG 留言續篇；撞到平台配額不標失敗、恢復後優先補發',
+        '200+ 個版本持續迭代（v0.201）：成員逐頁權限、平台 token 加密落庫、頻道健康探測、授權失效自動停手',
       ],
     },
     {
@@ -156,11 +223,13 @@ export const projects: { intro: string; items: Project[] } = {
       description:
         '整合政府開放資料的幼兒園名冊與裁罰紀錄，建立「歷史裁罰永久保存庫」，以地圖三色燈號、AI 白話標籤、家長社群、補助試算與 LINE / Email 推播，協助家長挑選幼兒園。',
       stack: ['C# / .NET 10 ASP.NET Core MVC', 'PostgreSQL 16 + PostGIS 3.4', 'EF Core 10 + NetTopologySuite', 'Bootstrap 5 + jQuery', 'Docker Compose', 'AWS EC2（Graviton）'],
-      integrations: ['Gemini AI（裁罰公文白話分類 / 摘要）', 'Google Maps Geocoding', 'LINE Login + Messaging API', '政府開放資料爬蟲（AngleSharp）'],
+      integrations: ['Gemini AI（裁罰公文白話分類 / 摘要）', 'Google Maps Geocoding', 'LINE Login + Messaging API（Ozakboy.Line 套件、關鍵字自動回覆、AI 提案待審）', 'Google Search Console / Bing Webmaster API / IndexNow', '政府開放資料爬蟲（AngleSharp）', 'MCP 唯讀工具（搜尋成效、AI 可見度）'],
       highlights: [
         '每日自動化政府資料管線 + 對抗下架的永久保存庫',
         'PostGIS 地理空間查詢 + 可稽核的機械式三色燈號',
-        '後台 / 前台會員雙 Cookie 認證的工程細節（antiforgery / DataProtection 內部機制）',
+        'SEO 內容工程：縣市 / 行政區裁罰紀錄頁、裁罰月報、詳情頁機械式時間軸敘述，全部由程式依欄位組字、不含評價',
+        '搜尋成效進站：Google 與 Bing 數據同表比對，伺服器端計數 14 個 AI 爬蟲與 9 個 AI 來源的可見度（只記名稱與路徑，不記 IP）',
+        '後台 / 前台會員雙 Cookie 認證的工程細節（antiforgery / DataProtection 內部機制），742 個自動化測試',
       ],
     },
     {
@@ -182,13 +251,15 @@ export const projects: { intro: string; items: Project[] } = {
       name: 'MyHome 韓滷',
       subtitle: '個人接案形象站 + 內容管理後台',
       description:
-        '以 Nuxt SSR 單一應用打包的接案形象網站，前台展示服務 / 作品 / 文章，後台提供完整 CRUD 與 SEO 管理，單一 Docker 容器即可上線。',
+        '以 Nuxt SSR 單一應用打包的接案形象網站，前台展示服務 / 作品 / 文章 / 方案與六步免費報價精靈，後台提供完整 CRUD、報價需求管理與 SEO 設定，單一 Docker 容器即可上線。',
       stack: ['Nuxt 4 SSR', 'Vue 3 + PrimeVue 4', 'TypeScript', '檔案即資料庫（Markdown + JSON）', 'pnpm'],
-      integrations: ['自製資料存取層（atomic write + per-file mutex），內容以 .md + frontmatter 便於 Git 版控', 'Docker 多階段 + GitHub Actions → GHCR（打 tag 自動發版、semver 標籤）', 'Nginx Proxy Manager'],
+      integrations: ['自製資料存取層（atomic write + per-file mutex），內容以 .md + frontmatter 便於 Git 版控', 'Docker 多階段 + GitHub Actions → GHCR（打 tag 自動發版、semver 標籤）', 'Telegram 推播（報價需求即時通知）', 'MCP 連線（OAuth 授權，AI 助理直接管理網站內容）', 'Cloudflare 邊緣快取（部署後自動清除）', 'Nginx Proxy Manager'],
       highlights: [
         '零資料庫全端架構：僅靠 ./data 目錄即可備份遷移',
         '單容器 SSR + 完整 CI/CD「打 tag 即發版」',
-        '內建 CMS + SEO：JSON-LD、可注入追蹤碼、favicon 多尺寸自動產生',
+        '六步免費報價精靈：右側即時試算區間，送出存後台並推 Telegram；後台依狀態追蹤到結案',
+        '效能與 SEO：每頁 HTML 從 202KB 降到 75KB、圖片上傳自動轉 WebP、結構化資料補齊、為 600+ 篇文章預先調整列表與內頁效能',
+        '內建 CMS + SEO：JSON-LD、可注入追蹤碼、favicon 多尺寸自動產生；後台入口自訂路徑，未登入一律回 404',
       ],
     },
   ],
@@ -215,6 +286,8 @@ export const skillGroups: SkillGroup[] = [
       '背景服務與排程（IHostedService / BackgroundService）',
       'Cookie / JWT 雙認證方案、DataProtection 金鑰管理',
       'Swagger / OpenAPI 文件、Microsoft.Extensions DI 設定綁定',
+      'WPF 桌面應用（MVVM、多螢幕可拆面板、安裝程式與自動更新）、Roslyn 動態編譯與隔離載入',
+      'SignalR 即時推播、Windows 系統整合（Port 對應 PID、程序接手、工作排程器、DPAPI）',
     ],
   },
   {
@@ -267,7 +340,8 @@ export const skillGroups: SkillGroup[] = [
       'Google：Maps Geocoding API、OAuth 2.0 登入',
       'AI 整合：Gemini（裁罰公文白話分類、摘要生成）',
       '網站爬蟲與資料管線（AngleSharp、政府開放資料）',
-      '報價訊號串接：股票 / 期貨 / 虛擬貨幣',
+      '券商與交易所串接：永豐金 Shioaji、群益 SKCOM、幣安 USDⓈ-M（行情、下單、回報、帳務對帳）',
+      'SEO 數據串接：Google Search Console、Bing Webmaster、IndexNow',
     ],
   },
   {
@@ -278,7 +352,9 @@ export const skillGroups: SkillGroup[] = [
       '本地 LLM：自架開源大型語言模型推論服務，建置私有化、離線可用的 AI 應用，資料不外流',
       'ComfyUI：AI 圖像生成工作流（workflow）建置與自動化，整合至內容產製流程',
       'LLM API 整合：Gemini 等雲端模型串接，內容分類、摘要生成與自動化處理',
-      'Prompt 設計與 AI 功能落地：將 AI 能力嵌入 CRM、CMS 等既有系統',
+      'MCP Server 開發：OAuth 2.1 授權、待審模式、唯讀工具，讓外部 AI 安全操作自家平台',
+      'AI 開發基礎設施：Claude Code skills / agents / hooks 護欄、Claude Agent SDK headless 派工、多車道成本路由',
+      'Prompt 設計與 AI 功能落地：將 AI 能力嵌入 CRM、CMS、交易系統等既有系統',
     ],
   },
   {
@@ -296,33 +372,60 @@ export const skillGroups: SkillGroup[] = [
   },
 ]
 
-export const openSource: { intro: string; items: OpenSourceItem[] } = {
-  intro: '於 GitHub 發佈多個 .NET 套件，提升開發效率與跨專案重用：',
+export const openSource: { intro: string; packageCount: number; items: OpenSourceItem[] } = {
+  /** NuGet 上實際發佈的套件數（列表依家族合併顯示，Hero 統計用這個數字） */
+  packageCount: 29,
+  intro: '於 NuGet 發佈 29 個 .NET 套件（多數支援 netstandard2.0 ～ net10.0，XML 註解中英雙語），走「自研優先、不依賴第三方社群套件」路線，交易、LINE、AI、HTTP 管線各自成體系，並在自家專案中實戰驗證：',
   items: [
     {
-      name: 'OzaLog',
-      description: '輕量級 .NET 本地檔案 logger，HFT 等級非同步管線、零相依（net8+），專為加密貨幣 tick 流場景設計',
-      url: 'https://github.com/ozakboy/OzaLog',
+      name: 'Ozakboy.TradeKit.*',
+      description: 'Abstractions / Shioaji / Capital / Binance / Indicators 五件：交易所中立的合約交易抽象層（委託、持倉、K 線、盤口、交易規則校正），加上永豐金 Shioaji、群益 SKCOM、幣安 USDⓈ-M 三家實作；技術指標每個都提供批次與增量兩種版本（SMA / EMA / RSI / ATR / MACD / BB / Donchian / ADX / VWAP）',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.TradeKit',
     },
     {
-      name: 'ozakboy.Gmail',
-      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis；支援收發信、history.list 增量同步、標籤與附件，內建 RFC 822 寫入器與 429 / 5xx 指數退避重試，支援 netstandard2.0 ～ net10.0',
+      name: 'Ozakboy.Http / Security / WebSockets',
+      description: '建構在官方 HttpClientFactory 之上的 HTTP 管線（順序固定簽章、加權多桶限流、冪等感知重試、脫敏日誌），取代 RestSharp / Flurl / Polly；DPAPI 金鑰保護與日誌敏感字串遮罩；長命 WebSocket 自動重連與重放訂閱；Core.Abstractions 提供 Result<T> / Money / Precision 基礎型別',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.Http',
+    },
+    {
+      name: 'Ozakboy.Line（+ AspNetCore / Mcp）',
+      description: 'LINE Login、Messaging API 與 Webhook 的 .NET 用戶端，預期失敗一律以 Result<T> 回傳；ASP.NET Core 認證方案自動處理 PKCE、nonce 與加好友引導；MCP 工具組讓外部 AI 擬廣播、改自動回覆，鐵則「AI 不得直接發送」',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.Line',
+    },
+    {
+      name: 'Ozakboy.Ai.Abstractions / Ai.ClaudeCli',
+      description: '與供應商無關的語言模型抽象層：純文字進、型別化物件出，結構化輸出由目標型別自動產生 JSON Schema；ClaudeCli 把已安裝的 Claude Code CLI 當子行程執行，提示走 stdin、事件流逐行解析',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.Ai',
+    },
+    {
+      name: 'Ozakboy.Gmail',
+      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis；支援收發信、history.list 增量同步、標籤與附件，內建 RFC 822 寫入器與 429 / 5xx 指數退避重試',
       url: 'https://github.com/ozakboy/ozakboy.Gmail',
     },
     {
-      name: 'ozakboy.PageData',
-      description: '支援 List<T> / IQueryable<T> / IEnumerable<T> 的彈性分頁函式庫',
+      name: 'OzaLog / ozakboy.NLOG',
+      description: '輕量級 .NET 本地檔案 logger：一行靜態 API、零相依、非同步寫入管線，專為高頻 tick 流場景設計',
+      url: 'https://github.com/ozakboy/OzaLog',
+    },
+    {
+      name: 'Ozakboy.Notify.Telegram / Mail / FCM',
+      description: 'Telegram Bot 告警推播（訊息分級、超長訊息依行切分不切斷字素）、系統郵件一行發送、Firebase Cloud Messaging HTTP v1 推播（單裝置 / 主題 / 條件 / 批次）',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.Notify',
+    },
+    {
+      name: 'Ozakboy.TaiwanKit.*',
+      description: 'TaiwanHolidays / TwIdValidator / Ganzhi.NET 三件：台灣國定假日與補班日查詢（資料內嵌、離線可用）、身分證 / 統編 / 手機號碼驗證、農曆 / 節氣 / 干支轉換（1901–2100）',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.TaiwanKit',
+    },
+    {
+      name: 'Ozakboy.Wpf.Charting / Mvvm',
+      description: 'WPF 高效能金融圖表：DrawingVisual 分層繪製、依像素降採樣，10,000 根 K 線縮放平移維持 60 FPS；零相依 MVVM 基礎設施',
+      url: 'https://www.nuget.org/packages?q=Ozakboy.Wpf',
+    },
+    {
+      name: 'ozakboy.PageData / Help / DirectoryTreeGenerator',
+      description: 'List<T> / IQueryable<T> / IEnumerable<T> 彈性分頁；日期、列舉、JSON 與例外處理的語法簡化工具庫；目錄結構 Markdown 文件產生器',
       url: 'https://github.com/ozakboy/ozakboy.PageData',
-    },
-    {
-      name: 'ozakboy.Help',
-      description: '將複雜語法簡化封裝的 .NET Core 工具庫',
-      url: 'https://github.com/ozakboy/ozakboy.Help',
-    },
-    {
-      name: 'ozakboy.Mail / ozakboy.FCM',
-      description: '郵件發送與推播封裝',
-      url: 'https://github.com/ozakboy?tab=repositories',
     },
     {
       name: 'Taiwan-news-crawlers',
@@ -343,10 +446,11 @@ export const techStack: TechStackRow[] = [
   { category: '容器 / CI-CD', technologies: ['Docker', 'Docker Compose', 'GitHub Actions', 'GHCR'] },
   { category: '雲端 / 網路', technologies: ['AWS EC2（ARM/Graviton）', 'Nginx / Nginx Proxy Manager', 'OpenResty', 'Cloudflare CDN', "Let's Encrypt SSL"] },
   { category: '機器人 / 通訊', technologies: ['LINE（Messaging / LIFF / Rich Menu）', 'Telegram Bot', 'Discord Bot', 'Web Push', 'SMTP', 'Gmail API'] },
-  { category: '第三方服務', technologies: ['Meta Graph API', 'Google Maps / OAuth', 'AngleSharp 爬蟲'] },
-  { category: 'AI 應用', technologies: ['AI Coding（Claude Code）', 'MCP Server 開發', '本地 LLM', 'ComfyUI', 'Gemini API'] },
-  { category: '測試 / 工具', technologies: ['Vitest', 'NPOI', 'Swagger / OpenAPI', 'PM2'] },
-  { category: '領域應用', technologies: ['CRM', '線上預約', '社群平台', 'PWA', '高頻交易', '微服務', '報價串接', 'AI 應用'] },
+  { category: '桌面應用', technologies: ['WPF + CommunityToolkit.Mvvm', 'WebView2', 'Roslyn 動態編譯', 'Windows 工作排程器 / DPAPI'] },
+  { category: '第三方服務', technologies: ['Meta Graph API', 'Google Maps / OAuth', '永豐金 Shioaji', '群益 SKCOM', '幣安 API', 'Search Console / Bing Webmaster', 'AngleSharp 爬蟲'] },
+  { category: 'AI 應用', technologies: ['AI Coding（Claude Code）', 'Claude Agent SDK', 'MCP Server 開發', '本地 LLM（Ollama）', 'ComfyUI', 'Gemini API'] },
+  { category: '測試 / 工具', technologies: ['MSTest / xUnit', 'Vitest', 'NPOI', 'Swagger / OpenAPI', 'PM2'] },
+  { category: '領域應用', technologies: ['CRM', '線上預約', '社群平台', 'PWA', '當沖 / 合約交易系統', '微服務', '桌面工具', 'AI 應用'] },
 ]
 
 export const navItems = [
