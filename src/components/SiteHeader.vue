@@ -11,13 +11,8 @@ const scrolled = ref(false)
 
 const themeLabel: Record<string, string> = {
   system: '跟隨系統',
-  light: '淺色模式',
-  dark: '深色模式',
-}
-const themeIcon: Record<string, string> = {
-  system: '🖥️',
-  light: '☀️',
-  dark: '🌙',
+  light: '淺色',
+  dark: '深色',
 }
 
 function onScroll() {
@@ -33,10 +28,10 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <header class="header" :class="{ scrolled }">
-    <div class="container header-inner">
+    <div class="wide header-inner">
       <a href="#top" class="brand" @click="menuOpen = false">
-        <span class="brand-mark">&lt;/&gt;</span>
-        <span class="brand-name">{{ profile.name }}</span>
+        <span class="brand-name">{{ profile.fullName }}</span>
+        <span class="brand-alias">{{ profile.name }}</span>
       </a>
 
       <nav class="nav" :class="{ open: menuOpen }" aria-label="主要導覽">
@@ -56,22 +51,25 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       <div class="actions">
         <button
           type="button"
-          class="icon-btn"
+          class="text-btn"
           :title="`主題：${themeLabel[theme]}（點擊切換）`"
           :aria-label="`切換主題，目前為${themeLabel[theme]}`"
           @click="cycle"
         >
-          {{ themeIcon[theme] }}
+          <svg v-if="theme === 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
+          <svg v-else-if="theme === 'light'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
+          <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></svg>
+          <span class="theme-text">{{ themeLabel[theme] }}</span>
         </button>
         <button
           type="button"
-          class="icon-btn menu-btn"
+          class="text-btn menu-btn"
           :aria-expanded="menuOpen"
           aria-label="開啟選單"
           @click="menuOpen = !menuOpen"
         >
-          <span v-if="menuOpen">✕</span>
-          <span v-else>☰</span>
+          <span v-if="menuOpen">關閉</span>
+          <span v-else>選單</span>
         </button>
       </div>
     </div>
@@ -84,16 +82,15 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   top: 0;
   z-index: 50;
   height: var(--header-height);
-  background: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color var(--duration-base) ease;
 }
 
 .header.scrolled {
   border-bottom-color: var(--border);
-  box-shadow: 0 4px 20px -12px rgb(15 23 42 / 0.25);
 }
 
 .header-inner {
@@ -106,48 +103,36 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 .brand {
   display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  align-items: baseline;
+  gap: 8px;
   color: var(--text);
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.brand:hover {
   text-decoration: none;
 }
 
-.brand-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--hero-bg);
-  color: var(--hero-accent);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+.brand-name {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.brand-alias {
   font-size: 0.8rem;
-  font-weight: 700;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
 }
 
 .nav {
   display: flex;
-  gap: 4px;
+  gap: 2px;
 }
 
 .nav-link {
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 999px;
   color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: background 0.15s, color 0.15s;
-}
-
-.nav-link:hover {
-  background: var(--bg-muted);
-  color: var(--text);
+  font-size: 0.9rem;
   text-decoration: none;
+  transition: color var(--duration-fast) ease, background var(--duration-fast) ease;
 }
 
 .nav-link.active {
@@ -155,28 +140,39 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   background: var(--accent-soft);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+}
+
 .actions {
   display: flex;
   align-items: center;
+  gap: 4px;
+}
+
+.text-btn {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
-}
-
-.icon-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-elevated);
-  color: var(--text);
-  font-size: 1.05rem;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
   cursor: pointer;
-  display: inline-grid;
-  place-items: center;
-  transition: background 0.15s;
+  transition: color var(--duration-fast) ease, border-color var(--duration-fast) ease;
 }
 
-.icon-btn:hover {
-  background: var(--bg-muted);
+@media (hover: hover) and (pointer: fine) {
+  .text-btn:hover {
+    color: var(--text);
+    border-color: var(--border);
+  }
 }
 
 .menu-btn {
@@ -184,8 +180,12 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 }
 
 @media (max-width: 860px) {
+  .theme-text {
+    display: none;
+  }
+
   .menu-btn {
-    display: inline-grid;
+    display: inline-flex;
   }
 
   .nav {
@@ -194,10 +194,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     left: 0;
     right: 0;
     flex-direction: column;
-    padding: 12px 18px 18px;
-    background: var(--bg-elevated);
+    padding: 8px var(--page-padding) 14px;
+    background: var(--tile);
     border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow);
     display: none;
   }
 
@@ -206,7 +205,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   }
 
   .nav-link {
-    padding: 12px 14px;
+    padding: 12px 10px;
     font-size: 1rem;
   }
 }

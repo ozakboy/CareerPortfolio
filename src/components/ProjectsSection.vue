@@ -1,46 +1,47 @@
 <script setup lang="ts">
 import { projects } from '../data/resume'
+
+/** 前兩個專案佔半寬當主打，其餘三欄排列 */
+function span(index: number) {
+  return index < 2 ? 's6' : 's4'
+}
 </script>
 
 <template>
   <section id="projects" class="section">
-    <div class="container">
-      <h2 class="section-title">專案實績</h2>
-      <p class="section-intro">{{ projects.intro }}</p>
-      <div class="list">
-        <article v-for="project in projects.items" :key="project.name" v-reveal class="card project">
+    <div class="wide">
+      <div class="section-head">
+        <h2 class="section-title">專案實績</h2>
+        <p class="section-intro">{{ projects.intro }}</p>
+      </div>
+      <div class="bento">
+        <article
+          v-for="(project, index) in projects.items"
+          :key="project.name"
+          v-reveal
+          class="tile project hoverable"
+          :class="span(index)"
+        >
           <header class="project-head">
-            <span class="project-icon" aria-hidden="true">{{ project.icon }}</span>
-            <div class="project-titles">
-              <h3 class="project-name">{{ project.name }}</h3>
-              <p class="project-subtitle">{{ project.subtitle }}</p>
-            </div>
+            <h3 class="project-name">{{ project.name }}</h3>
+            <p class="project-subtitle">{{ project.subtitle }}</p>
           </header>
-
-          <p class="project-desc">{{ project.description }}</p>
-
-          <div class="project-body">
-            <div class="block">
-              <h4 class="block-title">技術棧</h4>
-              <ul class="tags">
-                <li v-for="tech in project.stack" :key="tech" class="tag">{{ tech }}</li>
-              </ul>
-            </div>
-
-            <div class="block">
-              <h4 class="block-title">外部整合 / 基礎建設</h4>
+          <p class="muted project-desc">{{ project.description }}</p>
+          <ul class="chips">
+            <li v-for="tech in project.stack.slice(0, 6)" :key="tech" class="chip">{{ tech }}</li>
+            <li v-if="project.stack.length > 6" class="chip more">+{{ project.stack.length - 6 }}</li>
+          </ul>
+          <details class="project-more">
+            <summary>技術亮點與整合</summary>
+            <div class="project-body">
               <ul class="bullets">
+                <li v-for="item in project.highlights" :key="item">{{ item }}</li>
+              </ul>
+              <ul class="bullets soft">
                 <li v-for="item in project.integrations" :key="item">{{ item }}</li>
               </ul>
             </div>
-
-            <div class="block">
-              <h4 class="block-title">技術亮點</h4>
-              <ul class="bullets highlights">
-                <li v-for="item in project.highlights" :key="item">{{ item }}</li>
-              </ul>
-            </div>
-          </div>
+          </details>
         </article>
       </div>
     </div>
@@ -48,82 +49,67 @@ import { projects } from '../data/resume'
 </template>
 
 <style scoped>
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.project {
-  padding: 26px 28px 28px;
-  transition: border-color 0.18s;
-}
-
-.project:hover {
-  border-color: var(--accent);
-}
-
 .project-head {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
-.project-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: var(--accent-soft);
-  font-size: 1.5rem;
-  flex: none;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .project-name {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .project-subtitle {
-  color: var(--accent-strong);
-  font-weight: 600;
-  font-size: 0.95rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .project-desc {
-  color: var(--text-muted);
-  border-left: 3px solid var(--border);
-  padding-left: 14px;
-  margin-bottom: 18px;
+  font-size: 0.93rem;
+  line-height: 1.65;
 }
 
-.project-body {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-}
-
-.project-desc {
-  max-width: 100ch;
-}
-
-.block-title {
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.chip.more {
   color: var(--text-faint);
-  margin-bottom: 8px;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
+.project-more {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.project-more summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
 }
 
-.tag {
-  white-space: normal;
+.project-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-more summary::before {
+  content: '+';
+  font-weight: 700;
+  width: 1em;
+}
+
+.project-more[open] summary::before {
+  content: '−';
+}
+
+.project-body {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .bullets {
@@ -134,40 +120,32 @@ import { projects } from '../data/resume'
 
 .bullets li {
   position: relative;
-  padding-left: 16px;
-  color: var(--text-muted);
-  font-size: 0.93rem;
+  padding-left: 14px;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
 .bullets li::before {
   content: '';
   position: absolute;
-  left: 2px;
-  top: 0.65em;
-  width: 6px;
-  height: 6px;
+  left: 0;
+  top: 0.68em;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--text-faint);
-}
-
-.highlights li {
-  color: var(--text);
-}
-
-.highlights li::before {
   background: var(--accent);
 }
 
-@media (max-width: 960px) {
-  .project-body {
-    grid-template-columns: 1fr;
-  }
+.bullets.soft {
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
 }
 
-@media (max-width: 640px) {
-  .project {
-    padding: 20px 18px 22px;
-  }
+.bullets.soft li {
+  color: var(--text-muted);
+}
+
+.bullets.soft li::before {
+  background: var(--border-strong);
 }
 </style>

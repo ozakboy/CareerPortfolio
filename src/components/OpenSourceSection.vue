@@ -4,93 +4,79 @@ import { openSource } from '../data/resume'
 
 <template>
   <section id="opensource" class="section">
-    <div class="container">
-      <h2 class="section-title">開源 / 自製套件</h2>
-      <p class="section-intro">{{ openSource.intro }}</p>
-      <ul class="grid">
-        <li v-for="item in openSource.items" :key="item.name" v-reveal>
-          <component
-            :is="item.url ? 'a' : 'div'"
-            :href="item.url"
-            :target="item.url ? '_blank' : undefined"
-            :rel="item.url ? 'noopener' : undefined"
-            class="card pkg"
-          >
-            <div class="pkg-head">
-              <span class="pkg-icon" aria-hidden="true">📦</span>
-              <h3 class="pkg-name">{{ item.name }}</h3>
-              <span v-if="item.url" class="pkg-arrow" aria-hidden="true">↗</span>
-            </div>
-            <p class="pkg-desc">{{ item.description }}</p>
-          </component>
-        </li>
-      </ul>
+    <div class="wide">
+      <div class="section-head">
+        <h2 class="section-title">開源 / 自製套件</h2>
+        <p class="section-intro">{{ openSource.intro }}</p>
+      </div>
+      <div class="bento">
+        <div class="tile dark count s4">
+          <p class="tile-label">NUGET</p>
+          <p class="count-value">{{ openSource.packageCount }}</p>
+          <p class="muted">個已發佈套件，交易、LINE、AI、HTTP 管線各成體系</p>
+          <a href="https://www.nuget.org/profiles/ozakboy" class="count-link" target="_blank" rel="noopener">nuget.org/profiles/ozakboy ↗</a>
+        </div>
+        <component
+          :is="item.url ? 'a' : 'div'"
+          v-for="item in openSource.items"
+          :key="item.name"
+          :href="item.url"
+          :target="item.url ? '_blank' : undefined"
+          :rel="item.url ? 'noopener' : undefined"
+          v-reveal
+          class="tile pkg hoverable s4"
+        >
+          <p class="pkg-name">{{ item.name }}<span v-if="item.url" class="arrow" aria-hidden="true"> ↗</span></p>
+          <p class="muted pkg-desc">{{ item.description }}</p>
+        </component>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+.count-value {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-@media (max-width: 1100px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.count-link {
+  margin-top: auto;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  color: inherit;
 }
 
 .pkg {
-  display: block;
-  height: 100%;
-  padding: 20px 22px;
-  color: inherit;
-  transition: transform 0.18s, border-color 0.18s;
+  color: var(--text);
+  text-decoration: none;
 }
 
 .pkg:hover {
   text-decoration: none;
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
-
-.pkg-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.pkg-icon {
-  font-size: 1.1rem;
+  color: var(--text);
 }
 
 .pkg-name {
-  font-size: 1.02rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Noto Sans TC', monospace;
-  flex: 1;
-  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
   overflow-wrap: anywhere;
 }
 
-.pkg-arrow {
+.arrow {
   color: var(--text-faint);
+  font-weight: 400;
 }
 
-.pkg:hover .pkg-arrow {
+a.pkg:hover .pkg-name {
   color: var(--accent);
 }
 
 .pkg-desc {
-  color: var(--text-muted);
-  font-size: 0.93rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 </style>

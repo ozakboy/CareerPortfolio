@@ -1,56 +1,79 @@
+/*
+ * 全站設計 tokens 與基礎樣式。
+ * 版面概念：全站 Bento 磁磚——12 欄網格、圓角 20px 的卡片、大小不一的格子；
+ * 首屏以照片大格 + 自介格為主視覺，內文每個區塊都是同一套卡片語彙。
+ * 顏色只有一個主色（藍），其餘灰階；深淺色主題皆由 tokens 推導。
+ */
 :root {
-  --bg: #f7f8fb;
-  --bg-elevated: #ffffff;
-  --bg-muted: #eef1f6;
-  --text: #0f172a;
-  --text-muted: #475569;
-  --text-faint: #94a3b8;
-  --border: #e2e8f0;
-  --accent: #0284c7;
-  --accent-strong: #0369a1;
-  --accent-soft: #e0f2fe;
-  --hero-bg: #0f172a;
-  --hero-text: #f8fafc;
-  --hero-muted: #cbd5e1;
-  --hero-accent: #38bdf8;
-  --shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 8px 24px -12px rgb(15 23 42 / 0.15);
-  --radius: 14px;
-  --page-padding: 40px;
+  --bg: #f2f3f6;
+  --tile: #ffffff;
+  --tile-alt: #f7f8fa;
+  --tile-dark: #15171c;
+  --tile-dark-text: #f3f4f6;
+  --tile-dark-muted: #a3a9b5;
+  --text: #15171c;
+  --text-muted: #5c6370;
+  --text-faint: #8c94a1;
+  --border: #e4e6eb;
+  --border-strong: #cfd3da;
+  --accent: #1f5fbf;
+  --accent-strong: #174a99;
+  --accent-soft: #e7eefb;
+  --accent-text-on: #ffffff;
+  --shadow: 0 1px 2px rgb(21 23 28 / 0.04), 0 12px 32px -20px rgb(21 23 28 / 0.18);
+  --radius: 20px;
+  --radius-sm: 12px;
+  --gap: 16px;
+  --site-max: 1200px;
+  --page-padding: max(20px, env(safe-area-inset-left, 0px));
   --header-height: 60px;
+  --font-sans: Inter, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Noto Sans TC', monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-fast: 160ms;
+  --duration-base: 220ms;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #0b1220;
-    --bg-elevated: #111a2c;
-    --bg-muted: #16203a;
-    --text: #e2e8f0;
-    --text-muted: #94a3b8;
-    --text-faint: #64748b;
-    --border: #1f2a44;
-    --accent: #38bdf8;
-    --accent-strong: #7dd3fc;
-    --accent-soft: #0c2a3f;
-    --hero-bg: #060b16;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+    --bg: #0b0d12;
+    --tile: #15181f;
+    --tile-alt: #1b1f28;
+    --tile-dark: #e8eaef;
+    --tile-dark-text: #15171c;
+    --tile-dark-muted: #5c6370;
+    --text: #e8eaef;
+    --text-muted: #9aa1ac;
+    --text-faint: #6b7380;
+    --border: #262a33;
+    --border-strong: #363c48;
+    --accent: #6ea3f0;
+    --accent-strong: #9cc0f6;
+    --accent-soft: #182640;
+    --accent-text-on: #0b0d12;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -20px rgb(0 0 0 / 0.6);
     color-scheme: dark;
   }
 }
 
 :root[data-theme='dark'] {
-  --bg: #0b1220;
-  --bg-elevated: #111a2c;
-  --bg-muted: #16203a;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
-  --border: #1f2a44;
-  --accent: #38bdf8;
-  --accent-strong: #7dd3fc;
-  --accent-soft: #0c2a3f;
-  --hero-bg: #060b16;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --bg: #0b0d12;
+  --tile: #15181f;
+  --tile-alt: #1b1f28;
+  --tile-dark: #e8eaef;
+  --tile-dark-text: #15171c;
+  --tile-dark-muted: #5c6370;
+  --text: #e8eaef;
+  --text-muted: #9aa1ac;
+  --text-faint: #6b7380;
+  --border: #262a33;
+  --border-strong: #363c48;
+  --accent: #6ea3f0;
+  --accent-strong: #9cc0f6;
+  --accent-soft: #182640;
+  --accent-text-on: #0b0d12;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -20px rgb(0 0 0 / 0.6);
   color-scheme: dark;
 }
 
@@ -69,11 +92,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family:
-    'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Helvetica Neue', Arial,
-    system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -81,11 +102,13 @@ body {
 a {
   color: var(--accent);
   text-decoration: none;
+  transition: color var(--duration-fast) ease;
 }
 
 a:hover {
   color: var(--accent-strong);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 :focus-visible {
@@ -96,7 +119,7 @@ a:hover {
 
 strong {
   color: var(--text);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 h1,
@@ -105,14 +128,16 @@ h3,
 h4 {
   line-height: 1.3;
   margin: 0;
-  font-weight: 700;
+  font-weight: 600;
+  text-wrap: balance;
 }
 
 p {
   margin: 0;
 }
 
-ul {
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -123,21 +148,149 @@ img {
   display: block;
 }
 
-.container {
+button {
+  font-family: inherit;
+}
+
+/* 全站容器 */
+.wide {
   width: 100%;
-  padding: 0 var(--page-padding);
+  max-width: var(--site-max);
+  margin: 0 auto;
+  padding-left: var(--page-padding);
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
 
 .section {
-  padding: clamp(56px, 6vw, 96px) 0;
+  padding-block: clamp(28px, 4vw, 48px);
   scroll-margin-top: var(--header-height);
+}
+
+/* 區塊標題列 */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin-bottom: 18px;
+  padding-left: 6px;
+}
+
+.section-title {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 64ch;
+}
+
+/* Bento 網格與磁磚 */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.tile {
+  background: var(--tile);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tile.dark {
+  background: var(--tile-dark);
+  color: var(--tile-dark-text);
+  border-color: transparent;
+}
+
+.tile.dark .tile-label,
+.tile.dark .muted {
+  color: var(--tile-dark-muted);
+}
+
+.tile.accent {
+  background: var(--accent-soft);
+  border-color: transparent;
+}
+
+.tile-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+
+.tile-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.s3 { grid-column: span 3; }
+.s4 { grid-column: span 4; }
+.s5 { grid-column: span 5; }
+.s6 { grid-column: span 6; }
+.s7 { grid-column: span 7; }
+.s8 { grid-column: span 8; }
+.s9 { grid-column: span 9; }
+.s12 { grid-column: span 12; }
+
+/* 膠囊標籤 */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--tile-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.tile.dark .chip {
+  background: rgb(255 255 255 / 0.1);
+  border-color: rgb(255 255 255 / 0.14);
+  color: inherit;
+}
+
+/* 可互動磁磚的懸停回饋（只在精準指標裝置） */
+@media (hover: hover) and (pointer: fine) {
+  .tile.hoverable {
+    transition: transform var(--duration-base) var(--ease-out), border-color var(--duration-base) ease;
+  }
+
+  .tile.hoverable:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+  }
 }
 
 /* 進場淡入（由 v-reveal 指令控制） */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(12px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .reveal.is-visible {
@@ -155,78 +308,49 @@ img {
     transform: none;
     transition: none;
   }
-}
 
-.section + .section {
-  border-top: 1px solid var(--border);
-}
-
-.section-title {
-  font-size: 1.75rem;
-  letter-spacing: 0.01em;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.section-title::before {
-  content: '';
-  width: 6px;
-  height: 1.4em;
-  border-radius: 3px;
-  background: var(--accent);
-  flex: none;
-}
-
-.section-intro {
-  color: var(--text-muted);
-  margin-bottom: 32px;
-  max-width: 80ch;
-}
-
-.card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.tag {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-strong);
-  font-size: 0.85rem;
-  font-weight: 600;
-  line-height: 1.6;
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .section {
-    padding: 52px 0;
+  .tile.hoverable,
+  .tile.hoverable:hover {
+    transition: none;
+    transform: none;
   }
+}
 
-  .section-title {
-    font-size: 1.45rem;
+@media (max-width: 960px) {
+  .s3, .s4, .s5, .s6, .s7, .s8, .s9 {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 15.5px;
   }
 
   :root {
-    --page-padding: 18px;
+    --page-padding: max(16px, env(safe-area-inset-left, 0px));
+    --gap: 12px;
+    --radius: 16px;
+  }
+
+  .s3, .s4, .s5, .s6, .s7, .s8, .s9 {
+    grid-column: span 12;
+  }
+
+  .tile {
+    padding: 18px 18px 20px;
   }
 }
 
 @media print {
   :root {
     --bg: #fff;
-    --bg-elevated: #fff;
+    --tile: #fff;
     --shadow: none;
   }
 
   .section {
-    padding: 28px 0;
+    padding: 20px 0;
     break-inside: avoid;
   }
 }

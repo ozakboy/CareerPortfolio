@@ -4,92 +4,65 @@ import { summary } from '../data/resume'
 
 <template>
   <section id="summary" class="section">
-    <div class="container">
-      <h2 class="section-title">職涯摘要</h2>
-      <div v-reveal class="layout">
-        <div class="text">
+    <div class="wide">
+      <div class="section-head">
+        <h2 class="section-title">職涯摘要</h2>
+      </div>
+      <div class="bento">
+        <div v-reveal class="tile text s8">
           <!-- 內容為專案內部靜態資料，包含 <strong> 強調標記，故使用 v-html -->
           <p
             v-for="(paragraph, index) in summary.paragraphs"
             :key="index"
-            class="paragraph"
+            class="paragraph muted"
             v-html="paragraph"
           ></p>
         </div>
-        <aside class="card highlights">
-          <h3 class="highlights-title">核心能力</h3>
-          <dl>
-            <template v-for="item in summary.highlights" :key="item.label">
-              <dt>{{ item.label }}</dt>
-              <dd>{{ item.value }}</dd>
-            </template>
-          </dl>
-        </aside>
+        <dl v-reveal class="tile highlights s4">
+          <p class="tile-label">核心能力</p>
+          <div v-for="item in summary.highlights" :key="item.label" class="highlight">
+            <dt>{{ item.label }}</dt>
+            <dd>{{ item.value }}</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.layout {
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr);
-  gap: 32px;
-  align-items: start;
-}
-
 .text {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  gap: 14px;
+  padding: 26px 28px;
 }
 
 .paragraph {
-  color: var(--text-muted);
-  font-size: 1.02rem;
+  font-size: 0.98rem;
 }
 
 .highlights {
-  padding: 22px 24px;
-  position: sticky;
-  top: calc(var(--header-height) + 24px);
-}
-
-.highlights-title {
-  font-size: 1rem;
-  color: var(--text-faint);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-dl {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  gap: 0;
+}
+
+.highlight {
+  padding-block: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.highlight:first-of-type {
+  margin-top: 4px;
 }
 
 dt {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 dd {
   margin: 2px 0 0;
-  color: var(--text);
+  font-size: 0.93rem;
   line-height: 1.6;
-}
-
-@media (max-width: 860px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .highlights {
-    position: static;
-  }
 }
 </style>

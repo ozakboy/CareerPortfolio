@@ -1,330 +1,325 @@
 <script setup lang="ts">
-import { openSource, profile, projects, skillGroups } from '../data/resume'
+import { hero, openSource, profile, projects, skillGroups } from '../data/resume'
 
-const chips = ['C# / .NET 10', 'TypeScript', 'Vue 3 / Nuxt', 'PostgreSQL', 'Docker / CI-CD', 'AWS', 'AI Coding', '本地 LLM / ComfyUI']
+const portraitUrl = `${import.meta.env.BASE_URL}${profile.portrait}`
 
 const stats = [
   { value: projects.items.length, label: '完整交付專案', href: '#projects' },
-  { value: openSource.packageCount, label: '開源 / NuGet 套件', href: '#opensource' },
+  { value: openSource.packageCount, label: 'NuGet 套件', href: '#opensource' },
   { value: skillGroups.length, label: '技術領域', href: '#skills' },
 ]
-
-const focus = ['全端開發（.NET × Vue / Nuxt）', 'AI 導入與 MCP Server', 'CRM / 預約 / 社群平台', 'Docker / CI-CD / AWS 維運']
 </script>
 
 <template>
-  <section id="top" class="hero">
-    <div class="container hero-inner">
-      <div class="hero-main">
-        <p class="eyebrow">個人簡歷 · Career Portfolio</p>
-        <h1 class="name">{{ profile.name }}</h1>
-        <p class="title">{{ profile.title }}</p>
-        <p class="tagline">
-          一個人扛起從商業構想到正式上線維運的完整產品開發：需求分析、系統架構、前後端開發、資料庫設計、容器化部署與雲端維運。
-        </p>
+  <section id="top" class="hero section">
+    <div class="wide bento">
+      <figure class="tile photo s4">
+        <img :src="portraitUrl" alt="蔡承訓的正面半身照" width="1408" height="1760" fetchpriority="high" />
+        <figcaption class="photo-caption">
+          <span class="status-dot" aria-hidden="true"></span>
+          {{ hero.status }}
+        </figcaption>
+      </figure>
 
+      <div class="tile intro s8">
+        <p class="tile-label">全端工程師 · CAREER PORTFOLIO</p>
+        <h1 class="name">{{ profile.fullName }} <span class="alias">{{ profile.name }}</span></h1>
+        <p class="headline">{{ hero.headline }}</p>
+        <p class="lead muted">{{ hero.lead }}</p>
         <ul class="chips" aria-label="核心技術">
-          <li v-for="chip in chips" :key="chip" class="chip">{{ chip }}</li>
+          <li v-for="chip in hero.chips" :key="chip" class="chip">{{ chip }}</li>
         </ul>
-
         <div class="cta">
-          <a :href="`mailto:${profile.email}`" class="btn primary">✉️ 聯絡我</a>
-          <a href="#projects" class="btn ghost">看專案實績</a>
-          <a :href="profile.github" class="btn ghost" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="#projects" class="btn primary">看專案實績</a>
+          <a href="#contact" class="btn">聯絡我</a>
+          <a :href="profile.github" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
 
-      <aside class="glance" aria-label="一眼看懂">
-        <ul class="stats">
-          <li v-for="stat in stats" :key="stat.label">
-            <a :href="stat.href" class="stat">
-              <span class="stat-value">{{ stat.value }}</span>
-              <span class="stat-label">{{ stat.label }}</span>
-            </a>
-          </li>
+      <a v-for="stat in stats" :key="stat.label" :href="stat.href" class="tile stat hoverable s2">
+        <span class="stat-value">{{ stat.value }}</span>
+        <span class="stat-label">{{ stat.label }}</span>
+      </a>
+
+      <div class="tile now dark s4">
+        <p class="tile-label">{{ hero.now.label }}</p>
+        <p class="now-name">{{ hero.now.name }}</p>
+        <p class="muted now-desc">{{ hero.now.description }}</p>
+        <p class="now-meta">{{ hero.now.meta }}</p>
+      </div>
+
+      <div class="tile accent s4">
+        <p class="tile-label">{{ hero.ai.label }}</p>
+        <p class="tile-title">{{ hero.ai.title }}</p>
+        <p class="muted ai-desc">{{ hero.ai.description }}</p>
+      </div>
+
+      <div class="tile contact s4">
+        <p class="tile-label">快速聯繫</p>
+        <ul class="contact-list">
+          <li><span class="contact-key">Email</span><a :href="`mailto:${profile.email}`">{{ profile.email }}</a></li>
+          <li><span class="contact-key">LINE</span><a :href="profile.lineUrl" target="_blank" rel="noopener">{{ profile.lineId }}</a></li>
+          <li><span class="contact-key">GitHub</span><a :href="profile.github" target="_blank" rel="noopener">github.com/{{ profile.name }}</a></li>
         </ul>
-
-        <div class="glance-block">
-          <h2 class="glance-title">專注領域</h2>
-          <ul class="focus">
-            <li v-for="item in focus" :key="item">{{ item }}</li>
-          </ul>
-        </div>
-
-        <div class="glance-block">
-          <h2 class="glance-title">快速聯繫</h2>
-          <ul class="quick">
-            <li>
-              <span class="quick-label">Email</span>
-              <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
-            </li>
-            <li>
-              <span class="quick-label">LINE</span>
-              <a :href="profile.lineUrl" target="_blank" rel="noopener">{{ profile.lineId }}</a>
-            </li>
-          </ul>
-        </div>
-      </aside>
+      </div>
     </div>
-    <div class="hero-glow" aria-hidden="true"></div>
   </section>
 </template>
 
 <style scoped>
 .hero {
+  padding-top: clamp(16px, 2.5vw, 28px);
+}
+
+.s2 {
+  grid-column: span 2;
+}
+
+/* 照片格 */
+.photo {
+  margin: 0;
+  padding: 0;
   position: relative;
   overflow: hidden;
-  background: var(--hero-bg);
-  color: var(--hero-text);
-  padding: 88px 0 80px;
+  grid-row: span 2;
+  min-height: 360px;
 }
 
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
-  gap: clamp(32px, 5vw, 80px);
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.photo-caption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgb(21 23 28 / 0.72);
+  color: #ffffff;
+  font-size: 0.8rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.eyebrow {
-  color: var(--hero-accent);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+}
+
+/* 自介格 */
+.intro {
+  padding: 28px 32px 30px;
+  justify-content: center;
+  gap: 12px;
 }
 
 .name {
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
-  letter-spacing: -0.02em;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Noto Sans TC', monospace;
-}
-
-.title {
-  margin-top: 8px;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-  font-weight: 600;
-  color: var(--hero-text);
-}
-
-.tagline {
-  margin-top: 20px;
-  font-size: 1.05rem;
-  color: var(--hero-muted);
-  max-width: 64ch;
-}
-
-.chips {
-  margin-top: 28px;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
   display: flex;
+  align-items: baseline;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px 14px;
 }
 
-.chip {
-  padding: 5px 13px;
-  border-radius: 999px;
-  border: 1px solid rgb(148 163 184 / 0.35);
-  background: rgb(255 255 255 / 0.06);
-  color: var(--hero-text);
-  font-size: 0.875rem;
+.alias {
+  font-size: 1rem;
   font-weight: 500;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+}
+
+.headline {
+  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 62ch;
+}
+
+.intro .chips {
+  margin-top: 4px;
 }
 
 .cta {
-  margin-top: 36px;
+  margin-top: 6px;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 11px 20px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.93rem;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) ease, background var(--duration-fast) ease, color var(--duration-fast) ease;
 }
 
-.btn:hover {
-  text-decoration: none;
-  transform: translateY(-1px);
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn.primary {
-  background: var(--hero-accent);
-  color: #0b1220;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text-on);
 }
 
-.btn.primary:hover {
-  background: #7dd3fc;
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .btn.primary:hover {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: var(--accent-text-on);
+  }
 }
 
-.btn.ghost {
-  border: 1px solid rgb(148 163 184 / 0.45);
-  color: var(--hero-text);
-}
-
-.btn.ghost:hover {
-  border-color: var(--hero-accent);
-  color: var(--hero-accent);
-}
-
-/* 右側摘要卡 */
-.glance {
-  border: 1px solid rgb(148 163 184 / 0.25);
-  border-radius: 18px;
-  background: rgb(255 255 255 / 0.05);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 22px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
+/* 數字格 */
 .stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 14px 8px;
-  border-radius: 12px;
-  background: rgb(255 255 255 / 0.05);
-  color: var(--hero-text);
-  transition: background 0.15s, transform 0.15s;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2px;
+  color: var(--text);
+  text-decoration: none;
 }
 
 .stat:hover {
   text-decoration: none;
-  background: rgb(56 189 248 / 0.14);
-  transform: translateY(-2px);
+  color: var(--text);
 }
 
 .stat-value {
-  font-size: 1.9rem;
+  font-size: clamp(2rem, 3vw, 2.6rem);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--hero-accent);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
-  margin-top: 6px;
-  font-size: 0.78rem;
-  color: var(--hero-muted);
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
-.glance-block + .glance-block {
-  border-top: 1px solid rgb(148 163 184 / 0.2);
-  padding-top: 18px;
+/* 現在在做 */
+.now-name {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-.glance-title {
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--hero-accent);
-  margin-bottom: 10px;
+.now-desc {
+  font-size: 0.95rem;
 }
 
-.focus {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.now-meta {
+  margin-top: auto;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--tile-dark-muted);
 }
 
-.focus li {
-  position: relative;
-  padding-left: 16px;
+.ai-desc {
   font-size: 0.93rem;
-  color: var(--hero-text);
 }
 
-.focus li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.68em;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--hero-accent);
-}
-
-.quick {
+/* 聯繫格 */
+.contact-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  font-size: 0.9rem;
 }
 
-.quick li {
+.contact-list li {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  font-size: 0.93rem;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-.quick-label {
-  flex: none;
-  width: 44px;
-  font-size: 0.78rem;
-  color: var(--hero-muted);
-}
-
-.quick a {
-  color: var(--hero-text);
+.contact-list a {
   overflow-wrap: anywhere;
+  color: var(--text);
+  font-weight: 500;
 }
 
-.quick a:hover {
-  color: var(--hero-accent);
+.contact-list a:hover {
+  color: var(--accent);
 }
 
-.hero-glow {
-  position: absolute;
-  inset: auto -10% -40% auto;
-  width: 60vw;
-  max-width: 720px;
-  aspect-ratio: 1;
-  background: radial-gradient(circle at center, rgb(56 189 248 / 0.28), transparent 62%);
-  filter: blur(20px);
-  pointer-events: none;
+.contact-key {
+  font-size: 0.75rem;
+  color: var(--text-faint);
 }
 
 @media (max-width: 960px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
+  .photo {
+    grid-column: span 6;
+    grid-row: span 1;
+    aspect-ratio: 4 / 5;
+    min-height: 0;
   }
 
-  .glance {
-    max-width: 560px;
+  .intro {
+    grid-column: span 6;
+  }
+
+  .s2 {
+    grid-column: span 2;
   }
 }
 
-@media (max-width: 640px) {
-  .hero {
-    padding: 56px 0 56px;
+@media (max-width: 600px) {
+  .photo {
+    grid-column: span 12;
+    aspect-ratio: 1 / 1;
   }
 
-  .stats {
-    gap: 8px;
+  .intro {
+    grid-column: span 12;
+    padding: 22px 20px 24px;
+  }
+
+  .s2 {
+    grid-column: span 4;
+    padding: 16px 12px;
   }
 
   .stat-value {
     font-size: 1.6rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
   }
 }
 </style>

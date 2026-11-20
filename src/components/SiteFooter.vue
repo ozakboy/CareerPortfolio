@@ -6,19 +6,18 @@ const year = new Date().getFullYear()
 
 <template>
   <footer class="footer">
-    <div class="container footer-inner">
-      <span>© {{ year }} {{ profile.name }}</span>
-      <span class="built">Built with Vue 3 + Vite · Hosted on GitHub Pages</span>
+    <div class="wide footer-inner">
+      <span>© {{ year }} {{ profile.fullName }} · {{ profile.name }}</span>
+      <span>Vue 3 + Vite · GitHub Pages</span>
     </div>
   </footer>
 </template>
 
 <style scoped>
 .footer {
-  border-top: 1px solid var(--border);
-  padding: 28px 0;
+  padding-block: 20px 36px;
   color: var(--text-faint);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 .footer-inner {
@@ -26,5 +25,7 @@ const year = new Date().getFullYear()
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
+  padding-top: 16px;
+  padding-left: calc(var(--page-padding) + 6px);
 }
 </style>

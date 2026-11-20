@@ -37,12 +37,34 @@ export interface TechStackRow {
 
 export const profile = {
   name: 'ozakboy',
+  fullName: '蔡承訓',
   title: '全端工程師',
   tagline: 'C# / .NET 10 × TypeScript / Vue / Nuxt',
   email: 'ozakboy@ozakboy.life',
   github: 'https://github.com/ozakboy',
   lineId: 'chengxun0729',
   lineUrl: 'https://line.me/ti/p/~chengxun0729',
+  /** 首屏肖像（放在 public/，分割效果左右各顯示一半） */
+  portrait: 'portrait.webp',
+}
+
+/** 首屏 Bento 磁磚的文案 */
+export const hero = {
+  headline: '把商業構想做成能上線、能長期維運的產品。',
+  lead: '需求分析、系統架構、.NET 後端、Vue / Nuxt 前端、資料庫、Docker 部署與雲端維運，一個人完整交付；並把 AI 導入產品與開發流程。',
+  chips: ['C# / .NET 10', 'TypeScript', 'Vue / Nuxt', 'PostgreSQL', 'Docker / CI-CD', 'AWS', 'MCP Server', '本地 LLM'],
+  now: {
+    label: '現在在做',
+    name: 'TideTrade',
+    description: '台股當沖 AI 輔助桌面交易系統，.NET 10 + WPF，接永豐金與群益行情，5,900+ 自動化測試。',
+    meta: 'v0.32 · 持續更新',
+  },
+  ai: {
+    label: 'AI 導入',
+    title: '讓 AI 真正進到產品與流程裡',
+    description: '為產品開發 MCP Server、自架本地 LLM 讓資料不外流，並自建跨專案的 AI 開發基礎設施。',
+  },
+  status: '可接案 · 台灣 · 遠端協作',
 }
 
 export const summary = {
