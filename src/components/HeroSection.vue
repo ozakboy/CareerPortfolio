@@ -5,7 +5,7 @@ const portraitUrl = `${import.meta.env.BASE_URL}${profile.portrait}`
 
 const stats = [
   { value: projects.items.length, label: '完整交付專案', href: '#projects' },
-  { value: openSource.packageCount, label: 'NuGet 套件', href: '#opensource' },
+  { value: openSource.items.length, label: 'NuGet 套件', href: '#opensource' },
   { value: skillGroups.length, label: '技術領域', href: '#skills' },
 ]
 </script>

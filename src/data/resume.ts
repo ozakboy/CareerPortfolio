@@ -16,8 +16,12 @@ export interface ValueItem {
 
 export interface OpenSourceItem {
   name: string
+  /** 所屬體系，用來在卡片上標示顏色與分類 */
+  family: string
+  version: string
   description: string
-  url?: string
+  nuget: string
+  github: string
 }
 
 export interface Project {
@@ -28,6 +32,12 @@ export interface Project {
   stack: string[]
   integrations: string[]
   highlights: string[]
+  /** 正式網站；桌面 / 本機工具或未公開的專案不填 */
+  url?: string
+  /** 卡片縮圖，放在 public/projects/ 下的檔名；沒有圖的專案不填 */
+  image?: string
+  /** 沒有網址時顯示的型態標籤，例如「桌面應用」 */
+  kind?: string
 }
 
 export interface TechStackRow {
@@ -127,6 +137,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '📈',
       name: 'TideTrade',
       subtitle: '台股當沖 AI 輔助桌面交易系統',
+      kind: 'Windows 桌面應用',
+      image: 'tidetrade.webp',
       description:
         '接永豐金 Shioaji 與群益 SKCOM 行情，Tick、五檔、K 線全部落在本機 SQLite；用 Claude 討論策略、生成 C# 策略碼，Roslyn 即時編譯後本地回測，盤中以 shadow → advisory → auto 三段放權執行，每一筆都過風控閘門，帳務面板即時顯示扣完當沖稅費的淨損益（個人專案，真錢上線）。',
       stack: ['C# 14 / .NET 10', 'WPF + CommunityToolkit.Mvvm（三螢幕佈局、面板可拆出獨立視窗）', 'SQLite + EF Core（Tick 批次落地、本地優先回補）', 'Roslyn 動態編譯策略（隔離 AssemblyLoadContext + 參照白名單）', 'TradingView Lightweight Charts（WebView2 內嵌）', '安裝程式與 App 內自動更新'],
@@ -149,6 +161,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🛰️',
       name: 'LocalNexus',
       subtitle: '本機服務與 AI 控制中心',
+      kind: '本機服務',
+      image: 'localnexus.webp',
       description:
         '跑在開發機上的控制台：把本機的 Web 站台、API、資料庫、Ollama / ComfyUI、cloudflared 隧道放在同一張拓撲圖上，看得到即時狀態與 CPU / 記憶體 / VRAM 用量，可一鍵啟停、依相依連動、更新隧道；服務閒置自動停、有請求自動喚醒，開機後不用再開一堆命令列視窗。',
       stack: ['.NET 10 ASP.NET Core Minimal API + SignalR', 'EF Core SQLite（設定表與執行期表分離）', 'Vue 3 + Vite + TypeScript + Tailwind v4 + Pinia', '自寫 SVG 拓撲圖 / 軌道總覽 / 儀表元件（不裝圖表函式庫）', 'xUnit + Vitest', 'Windows 工作排程器常駐（最高權限、免 UAC、單一程序同時提供 API 與前端）'],
@@ -169,6 +183,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🧰',
       name: 'claude-harness',
       subtitle: '個人跨專案 AI 開發基礎設施',
+      kind: '開發工具',
+      image: 'claude-harness.webp',
       description:
         '把 AI 輔助開發的規範、技能、角色與護欄集中成一個 repo，安裝後所有專案的 Claude Code 自動繼承，同一份來源連動到 OpenAI Codex；以「五車道」路由把工作依成本與風險分派到主模型、月額 headless、Codex、本地模型與媒體生成，判斷留在主迴圈、雜活往便宜的車道送。',
       stack: ['Claude Code Skills / Agents / Hooks / Plugin（mods）', 'PowerShell + Bash 雙平台安裝腳本（junction 連結，改了即生效）', 'Node.js 路由、狀態與帳本工具（dispatch / status / ledger）', 'Claude Agent SDK headless 派工', 'Ollama / Strata 本地模型車道'],
@@ -190,6 +206,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🌱',
       name: 'Sower',
       subtitle: '全自動 AI 社群帳號經營與代購銷售平台',
+      url: 'https://sower.ozakboy.life/',
+      image: 'sower.webp',
       description:
         '集中經營品牌的 Facebook / Instagram / Threads / TikTok：每天到點自動發文、文案配圖 AI 生成、留言由 AI 草擬回覆，人工審核必經；再往下接代購限量搶購、訂閱金流、信箱 AI 分類與 MCP 接口，讓外部 AI 用 Sower 帳號授權後直接產稿送審、建立待上架商品，把「AI 寫稿 → 人審 → 自動發布 → 留言經營 → 下單收款」串成一條線。',
       stack: ['C# / .NET 10 Web API + 背景排程（到點發文、留言輪詢）', 'Sower.Worker 本機 Windows 服務（Claude 產文、分級）', 'Vue 3 後台 SPA', 'PostgreSQL + EF Core', 'MCP Server + OAuth 2.1 授權伺服器', 'Telegram Bot', 'Docker Compose（healthcheck、煙霧測試、回滾點）'],
@@ -214,6 +232,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🌸',
       name: 'Cellenya 妍雅',
       subtitle: '美容品牌官網 + 自助預約平台',
+      url: 'https://www.cellenya.com/',
+      image: 'cellenya.webp',
       description:
         '美容 / 醫美品牌官方網站結合線上自助預約系統，顧客可自行查詢美容師空檔、線上預約並接收 LINE 通知；後台管理預約、排班、行銷推播與內容（商業專案）。',
       stack: ['Nuxt 4 全端（Nitro，106 個 API 端點）', 'Vue 3.5 + PrimeVue 4', 'TypeScript', 'SQLite + Prisma 7', 'Vitest', 'Docker 多階段建置'],
@@ -228,6 +248,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🤝',
       name: 'Cohort',
       subtitle: '客戶經營（CRM）平台（二代）',
+      kind: '企業內部系統',
+      image: 'cohort.webp',
       description:
         '整合 Meta(Facebook) 廣告名單匯入、LINE / Messenger 訊息自動回覆與發送、業務輪詢分配與黑名單防護的一站式客戶經營平台。',
       stack: ['微服務架構（4 個 .NET 10 服務）', 'Vue 3 + Vite 7 + Naive UI 後台 SPA', 'Nuxt 3 公開站', 'PostgreSQL 16 + EF Core 10', 'Docker Compose'],
@@ -242,6 +264,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🚦',
       name: '幼明燈 YouMingDeng',
       subtitle: '幼兒園避雷與評價社群平台',
+      url: 'https://youmingdeng.ozakboy.life/',
+      image: 'youmingdeng.webp',
       description:
         '整合政府開放資料的幼兒園名冊與裁罰紀錄，建立「歷史裁罰永久保存庫」，以地圖三色燈號、AI 白話標籤、家長社群、補助試算與 LINE / Email 推播，協助家長挑選幼兒園。',
       stack: ['C# / .NET 10 ASP.NET Core MVC', 'PostgreSQL 16 + PostGIS 3.4', 'EF Core 10 + NetTopologySuite', 'Bootstrap 5 + jQuery', 'Docker Compose', 'AWS EC2（Graviton）'],
@@ -258,6 +282,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🍼',
       name: '小奶瓶日記 Feeding Memo',
       subtitle: '新生兒共同照護記錄 PWA',
+      url: 'https://petitebottle.ozakboy.life/',
+      image: 'feeding-memo.webp',
       description:
         '全家共同照護新生兒的記錄系統，記錄餵奶、排泄、睡眠、生長，並支援 Telegram 機器人快速記錄與定時提醒。',
       stack: ['Nuxt 4 全端 PWA', 'Vue 3 + Tailwind v4 + DaisyUI v5 + Pinia', 'PostgreSQL 16 + Drizzle ORM', '@vite-pwa/nuxt + Workbox', 'Docker', 'AWS EC2（Graviton）'],
@@ -272,6 +298,8 @@ export const projects: { intro: string; items: Project[] } = {
       icon: '🏠',
       name: 'MyHome 韓滷',
       subtitle: '個人接案形象站 + 內容管理後台',
+      url: 'https://www.ozakboy.life/',
+      image: 'myhome.webp',
       description:
         '以 Nuxt SSR 單一應用打包的接案形象網站，前台展示服務 / 作品 / 文章 / 方案與六步免費報價精靈，後台提供完整 CRUD、報價需求管理與 SEO 設定，單一 Docker 容器即可上線。',
       stack: ['Nuxt 4 SSR', 'Vue 3 + PrimeVue 4', 'TypeScript', '檔案即資料庫（Markdown + JSON）', 'pnpm'],
@@ -394,65 +422,248 @@ export const skillGroups: SkillGroup[] = [
   },
 ]
 
-export const openSource: { intro: string; packageCount: number; items: OpenSourceItem[] } = {
-  /** NuGet 上實際發佈的套件數（列表依家族合併顯示，Hero 統計用這個數字） */
-  packageCount: 29,
-  intro: '於 NuGet 發佈 29 個 .NET 套件（多數支援 netstandard2.0 ～ net10.0，XML 註解中英雙語），走「自研優先、不依賴第三方社群套件」路線，交易、LINE、AI、HTTP 管線各自成體系，並在自家專案中實戰驗證：',
+export const openSource: { intro: string; items: OpenSourceItem[] } = {
+  intro: '於 NuGet 發佈 29 個 .NET 套件（多數支援 netstandard2.0 ～ net10.0，XML 註解中英雙語），走「自研優先、不依賴第三方社群套件」路線，交易、LINE、AI、HTTP 管線各自成體系，並在自家專案中實戰驗證。每個套件都附 NuGet 與 GitHub 原始碼連結：',
   items: [
+    // 交易系統
     {
-      name: 'Ozakboy.TradeKit.*',
-      description: 'Abstractions / Shioaji / Capital / Binance / Indicators 五件：交易所中立的合約交易抽象層（委託、持倉、K 線、盤口、交易規則校正），加上永豐金 Shioaji、群益 SKCOM、幣安 USDⓈ-M 三家實作；技術指標每個都提供批次與增量兩種版本（SMA / EMA / RSI / ATR / MACD / BB / Donchian / ADX / VWAP）',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.TradeKit',
+      name: 'Ozakboy.TradeKit.Abstractions',
+      family: '交易',
+      version: '0.8.0',
+      description: '交易所中立的合約交易抽象層：委託、持倉、帳戶、K 線、盤口、成交等不可變模型，交易規則（tickSize / stepSize / minNotional）校正與 IExchangeClient 等介面，所有會失敗的操作一律回傳 Result<T>。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TradeKit.Abstractions',
+      github: 'https://github.com/ozakboy/Ozakboy.TradeKit.Abstractions',
     },
     {
-      name: 'Ozakboy.Http / Security / WebSockets',
-      description: '建構在官方 HttpClientFactory 之上的 HTTP 管線（順序固定簽章、加權多桶限流、冪等感知重試、脫敏日誌），取代 RestSharp / Flurl / Polly；DPAPI 金鑰保護與日誌敏感字串遮罩；長命 WebSocket 自動重連與重放訂閱；Core.Abstractions 提供 Result<T> / Money / Precision 基礎型別',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.Http',
+      name: 'Ozakboy.TradeKit.Binance',
+      family: '交易',
+      version: '0.6.0',
+      description: '幣安 USDⓈ-M 永續合約實作：建構在 Ozakboy.Http 簽章 / 限流 / 重試管線之上，下單永不重試、WebSocket K 線與標記價格、使用者資料流在本地狀態需對帳時主動通知，測試網與主網不可混用。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TradeKit.Binance',
+      github: 'https://github.com/ozakboy/Ozakboy.TradeKit.Binance',
     },
     {
-      name: 'Ozakboy.Line（+ AspNetCore / Mcp）',
-      description: 'LINE Login、Messaging API 與 Webhook 的 .NET 用戶端，預期失敗一律以 Result<T> 回傳；ASP.NET Core 認證方案自動處理 PKCE、nonce 與加好友引導；MCP 工具組讓外部 AI 擬廣播、改自動回覆，鐵則「AI 不得直接發送」',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.Line',
+      name: 'Ozakboy.TradeKit.Shioaji',
+      family: '交易',
+      version: '0.3.2',
+      description: '永豐金 Shioaji 官方本機 HTTP server 的 .NET 10 用戶端：監督官方 server 行程、憑證只走子行程環境變數不落檔不進日誌，提供帳號、商品與行情查詢。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TradeKit.Shioaji',
+      github: 'https://github.com/ozakboy/Ozakboy.TradeKit.Shioaji',
     },
     {
-      name: 'Ozakboy.Ai.Abstractions / Ai.ClaudeCli',
-      description: '與供應商無關的語言模型抽象層：純文字進、型別化物件出，結構化輸出由目標型別自動產生 JSON Schema；ClaudeCli 把已安裝的 Claude Code CLI 當子行程執行，提示走 stdin、事件流逐行解析',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.Ai',
+      name: 'Ozakboy.TradeKit.Capital',
+      family: '交易',
+      version: '0.3.0',
+      description: '群益證券 SKCOM 的 .NET 10 用戶端：海外外匯與海期報價、國內期貨歷史 K 線、國內期權即時報價與海外五檔 / 十檔；唯讀設計，不做下單與出入金。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TradeKit.Capital',
+      github: 'https://github.com/ozakboy/Ozakboy.TradeKit.Capital',
+    },
+    {
+      name: 'Ozakboy.TradeKit.Indicators',
+      family: '交易',
+      version: '0.3.0',
+      description: '零相依技術指標函式庫，每個指標都提供批次與增量（streaming）兩種版本：SMA、EMA、RSI、ATR、MACD、Bollinger Bands、Donchian、ADX、VWAP，全程 decimal、常數記憶體、明確暖機期。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TradeKit.Indicators',
+      github: 'https://github.com/ozakboy/Ozakboy.TradeKit.Indicators',
+    },
+    {
+      name: 'Ozakboy.Wpf.Charting',
+      family: '桌面',
+      version: '0.1.0',
+      description: 'WPF 高效能金融圖表控制項：以 DrawingVisual 分層繪製、依像素欄位降採樣並保留最高最低，10,000 根 K 線縮放平移維持 60 FPS；提供 K 線、指標折線、進出場標記與停損停利水平線。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Wpf.Charting',
+      github: 'https://github.com/ozakboy/Ozakboy.Wpf.Charting',
+    },
+    {
+      name: 'Ozakboy.Mvvm',
+      family: '桌面',
+      version: '0.1.0',
+      description: '零相依的 .NET MVVM 基礎設施：ObservableObject、RelayCommand 與 AsyncRelayCommand，預設不可重入、直接 Execute 也會重查 CanExecute，例外記錄而不讓 dispatcher 崩潰。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Mvvm',
+      github: 'https://github.com/ozakboy/Ozakboy.Mvvm',
+    },
+    // HTTP 與基礎建設
+    {
+      name: 'Ozakboy.Http',
+      family: '基礎',
+      version: '0.3.4',
+      description: '建構在官方 HttpClientFactory 與 DelegatingHandler 之上的 HTTP 管線，取代 RestSharp / Flurl / Polly：順序固定的 HMAC 簽章、加權多桶限流、冪等感知重試與脫敏日誌四段處理器。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Http',
+      github: 'https://github.com/ozakboy/Ozakboy.Http',
+    },
+    {
+      name: 'Ozakboy.WebSockets',
+      family: '基礎',
+      version: '0.2.1',
+      description: '建立在 BCL ClientWebSocket 之上的長命 WebSocket 客戶端：自動重連（退避加抖動）、重連後重放訂閱、閒置逾時存活偵測，有界背壓且缺口通知絕不靜默丟棄。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.WebSockets',
+      github: 'https://github.com/ozakboy/Ozakboy.WebSockets',
+    },
+    {
+      name: 'Ozakboy.Security',
+      family: '基礎',
+      version: '0.1.1',
+      description: '.NET 憑證與敏感資料保護：Windows DPAPI 金鑰保護（介面優先、非 Windows 可替換）、日誌敏感字串 / URL 參數 / JSON 欄位遮罩、AES-GCM 設定檔加密與 PBKDF2 金鑰衍生。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Security',
+      github: 'https://github.com/ozakboy/Ozakboy.Security',
+    },
+    {
+      name: 'Ozakboy.Core.Abstractions',
+      family: '基礎',
+      version: '0.3.0',
+      description: '零相依的 .NET 基礎型別：Result / Result<T> 明確結果型別、帶幣別的 Money 金額值型別、Precision 十進位步進值對齊、RetryPolicy 重試策略描述，全部以 decimal 運算。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Core.Abstractions',
+      github: 'https://github.com/ozakboy/Ozakboy.Core.Abstractions',
+    },
+    // LINE
+    {
+      name: 'Ozakboy.Line',
+      family: 'LINE',
+      version: '0.5.0',
+      description: 'LINE Login、Messaging API 與 Webhook 的 .NET 用戶端，建構在 Ozakboy.Http 管線之上：預期失敗以 Result<T> 回傳、憑證遮罩後才進日誌、POST 只在帶 X-Line-Retry-Key 時才重試，id_token 本地驗證。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Line',
+      github: 'https://github.com/ozakboy/Ozakboy.Line',
+    },
+    {
+      name: 'Ozakboy.Line.AspNetCore',
+      family: 'LINE',
+      version: '0.5.0',
+      description: '把 Ozakboy.Line 接上 ASP.NET Core：AddLineLogin() 註冊建立在官方 OAuthHandler 之上的 LINE Login 認證方案，自動處理 PKCE、nonce、加好友引導與好友狀態宣告，並掛載 Webhook 端點。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Line.AspNetCore',
+      github: 'https://github.com/ozakboy/Ozakboy.Line',
+    },
+    {
+      name: 'Ozakboy.Line.Mcp',
+      family: 'LINE',
+      version: '0.5.0',
+      description: '把 Ozakboy.Line 包成一組 MCP 工具，讓外部 AI 查詢官方帳號狀態、擬廣播、改自動回覆規則與圖文選單；鐵則「AI 不得直接發送」，送出類工具只寫進待審佇列，核准權留給宿主程式。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Line.Mcp',
+      github: 'https://github.com/ozakboy/Ozakboy.Line',
+    },
+    // AI
+    {
+      name: 'Ozakboy.Ai.Abstractions',
+      family: 'AI',
+      version: '0.1.0',
+      description: '與供應商無關的語言模型抽象層：IAiCompletionClient 以「純文字進、型別化物件出」為唯一契約，結構化輸出由目標型別自動產生 JSON Schema 附進提示，請求、結果與 token / 費用計量皆為不可變模型。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Ai.Abstractions',
+      github: 'https://github.com/ozakboy/Ozakboy.Ai.Abstractions',
+    },
+    {
+      name: 'Ozakboy.Ai.ClaudeCli',
+      family: 'AI',
+      version: '0.1.0',
+      description: 'Ozakboy.Ai.Abstractions 的本地實作：把已安裝的 Claude Code CLI 當子行程執行（headless stream-json），提示走 stdin 避開命令列長度上限，型別化 JSON 輸出含一次修復回合、行程樹逾時與憑證清洗的子環境。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Ai.ClaudeCli',
+      github: 'https://github.com/ozakboy/Ozakboy.Ai.ClaudeCli',
+    },
+    // 通知與郵件
+    {
+      name: 'Ozakboy.Notify.Telegram',
+      family: '通知',
+      version: '0.1.0',
+      description: '建構在 Ozakboy.Http 之上的 Telegram Bot 告警推播，取代 Telegram.Bot：訊息分級（Info / Warning / Critical）、超過 4096 字元依行切分且不切斷字素、限流與 429 retry_after、token 遮罩。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Notify.Telegram',
+      github: 'https://github.com/ozakboy/Ozakboy.Notify.Telegram',
+    },
+    {
+      name: 'Ozakboy.Mail',
+      family: '通知',
+      version: '1.2.0',
+      description: '一個設定區段、一次呼叫就能從 .NET 寄出系統郵件：同步 SendMail 與非同步 SendMailAsync，支援多收件人、副本與附件。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Mail',
+      github: 'https://github.com/ozakboy/ozakboy.Mail',
+    },
+    {
+      name: 'Ozakboy.FCM',
+      family: '通知',
+      version: '2.0.0',
+      description: 'Google Firebase Cloud Messaging HTTP v1 推播套件：單一裝置、主題、條件與批次推播，主題訂閱 / 取消訂閱，支援 Android / iOS / Web 平台專屬設定。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.FCM',
+      github: 'https://github.com/ozakboy/ozakboy.FCM',
     },
     {
       name: 'Ozakboy.Gmail',
-      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis；支援收發信、history.list 增量同步、標籤與附件，內建 RFC 822 寫入器與 429 / 5xx 指數退避重試',
-      url: 'https://github.com/ozakboy/ozakboy.Gmail',
+      family: '通知',
+      version: '2.1.0',
+      description: '輕量、純非同步的 Gmail REST API 與 Google OAuth 2.0 客戶端，不依賴 Google.Apis：列出、讀取與寄送郵件、token 交換與更新，token 由你自己保管。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.Gmail',
+      github: 'https://github.com/ozakboy/ozakboy.Gmail',
+    },
+    // 日誌
+    {
+      name: 'OzaLog',
+      family: '日誌',
+      version: '3.3.0',
+      description: '精簡的 .NET 本地檔案 logger：一行靜態 API（LOG.Info_Log）、不需 DI 與 LoggerFactory、HFT 等級的非同步寫入管線，net8+ 零 NuGet 相依，為加密貨幣 tick 流場景設計。',
+      nuget: 'https://www.nuget.org/packages/OzaLog',
+      github: 'https://github.com/ozakboy/OzaLog',
     },
     {
-      name: 'OzaLog / ozakboy.NLOG',
-      description: '輕量級 .NET 本地檔案 logger：一行靜態 API、零相依、非同步寫入管線，專為高頻 tick 流場景設計',
-      url: 'https://github.com/ozakboy/OzaLog',
+      name: 'ozakboy.NLOG',
+      family: '日誌',
+      version: '2.1.0',
+      description: 'OzaLog 的前身：輕量高效能的 .NET 日誌函式庫，非同步寫入、智慧檔案管理與豐富設定選項（原始碼已併入 OzaLog 儲存庫）。',
+      nuget: 'https://www.nuget.org/packages/ozakboy.NLOG',
+      github: 'https://github.com/ozakboy/OzaLog',
+    },
+    // 台灣在地
+    {
+      name: 'Ozakboy.TaiwanKit.TaiwanHolidays',
+      family: '台灣',
+      version: '1.0.1',
+      description: '台灣國定假日與補班日查詢（2017–2027）：內嵌行政院人事總處官方行事曆資料，離線可用。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TaiwanKit.TaiwanHolidays',
+      github: 'https://github.com/ozakboy/Ozakboy.TaiwanKit.TaiwanHolidays',
     },
     {
-      name: 'Ozakboy.Notify.Telegram / Mail / FCM',
-      description: 'Telegram Bot 告警推播（訊息分級、超長訊息依行切分不切斷字素）、系統郵件一行發送、Firebase Cloud Messaging HTTP v1 推播（單裝置 / 主題 / 條件 / 批次）',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.Notify',
+      name: 'Ozakboy.TaiwanKit.TwIdValidator',
+      family: '台灣',
+      version: '1.0.1',
+      description: '台灣身分證（含居留證號）、統一編號與手機號碼驗證，回傳詳細失敗原因。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TaiwanKit.TwIdValidator',
+      github: 'https://github.com/ozakboy/Ozakboy.TaiwanKit.TwIdValidator',
     },
     {
-      name: 'Ozakboy.TaiwanKit.*',
-      description: 'TaiwanHolidays / TwIdValidator / Ganzhi.NET 三件：台灣國定假日與補班日查詢（資料內嵌、離線可用）、身分證 / 統編 / 手機號碼驗證、農曆 / 節氣 / 干支轉換（1901–2100）',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.TaiwanKit',
+      name: 'Ozakboy.TaiwanKit.Ganzhi.NET',
+      family: '台灣',
+      version: '1.0.1',
+      description: '農曆、二十四節氣（分鐘級精度）與干支四柱轉換（1901–2100）：國曆與農曆互轉、生肖、閏月處理。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.TaiwanKit.Ganzhi.NET',
+      github: 'https://github.com/ozakboy/Ozakboy.TaiwanKit.Ganzhi.NET',
+    },
+    // 工具
+    {
+      name: 'Ozakboy.PageData',
+      family: '工具',
+      version: '1.2.1',
+      description: '輕量彈性的 .NET 分頁函式庫：List<T>、IQueryable<T> 與 IEnumerable<T> 一個擴充方法就能分頁。',
+      nuget: 'https://www.nuget.org/packages/Ozakboy.PageData',
+      github: 'https://github.com/ozakboy/ozakboy.PageData',
     },
     {
-      name: 'Ozakboy.Wpf.Charting / Mvvm',
-      description: 'WPF 高效能金融圖表：DrawingVisual 分層繪製、依像素降採樣，10,000 根 K 線縮放平移維持 60 FPS；零相依 MVVM 基礎設施',
-      url: 'https://www.nuget.org/packages?q=Ozakboy.Wpf',
+      name: 'ozakboy.Help',
+      family: '工具',
+      version: '1.1.0',
+      description: '把複雜語法簡單化的工具庫：日期時間處理、列舉擴充、JSON 處理與例外處理等常用功能。',
+      nuget: 'https://www.nuget.org/packages/ozakboy.Help',
+      github: 'https://github.com/ozakboy/ozakboy.Help',
     },
     {
-      name: 'ozakboy.PageData / Help / DirectoryTreeGenerator',
-      description: 'List<T> / IQueryable<T> / IEnumerable<T> 彈性分頁；日期、列舉、JSON 與例外處理的語法簡化工具庫；目錄結構 Markdown 文件產生器',
-      url: 'https://github.com/ozakboy/ozakboy.PageData',
+      name: 'ozakboy.DirectoryTreeGenerator',
+      family: '工具',
+      version: '1.0.0',
+      description: '把目錄結構產生成帶圖示的 Markdown 文件，方便寫專案說明與技術文件。',
+      nuget: 'https://www.nuget.org/packages/ozakboy.DirectoryTreeGenerator',
+      github: 'https://github.com/ozakboy/DirectoryTreeGenerator',
     },
     {
       name: 'Taiwan-news-crawlers',
-      description: '.NET 台灣新聞爬蟲，數據物件化',
-      url: 'https://github.com/ozakboy/Taiwan-news-crawlers',
+      family: '工具',
+      version: '1.4.11',
+      description: '.NET 台灣新聞網站爬蟲，抓回來的新聞直接物件化，方便後續處理與分析。',
+      nuget: 'https://www.nuget.org/packages/Taiwan-news-crawlers',
+      github: 'https://github.com/ozakboy/Taiwan-news-crawlers',
     },
   ],
 }
